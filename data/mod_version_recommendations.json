@@ -1,0 +1,885 @@
+{
+  "_meta": {
+    "description": "MC模组版本推荐数据库（根据MC版本和加载器给出最佳匹配模组版本）",
+    "version": "1.0",
+    "last_updated": "2026-08-04",
+    "note": "版本优先级：稳定版 > Beta > Alpha。推荐版本为当前MC版本+加载器下官方发布的最新稳定版"
+  },
+  "mods": {
+    "create": {
+      "name_cn": "机械动力 (Create)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "6.0.10",
+            "minimum": "6.0.0",
+            "notes": "6.0.x 为1.21.1分支的稳定版，架构发生重构，不兼容5.x的Mixin"
+          },
+          "forge": {
+            "recommended": "6.0.10",
+            "minimum": "6.0.0",
+            "notes": "Forge已停止维护，建议升级NeoForge"
+          },
+          "fabric": {
+            "recommended": "0.6.6+0.6.0",
+            "minimum": "0.6.0",
+            "notes": "Fabric版由社区移植，功能略少于NeoForge版"
+          }
+        },
+        "1.20.1": {
+          "neoforge": {
+            "recommended": "0.5.1.e",
+            "minimum": "0.5.0",
+            "notes": "1.20.1最后一个稳定版"
+          },
+          "forge": {
+            "recommended": "0.5.1.e",
+            "minimum": "0.5.0",
+            "notes": "Forge 47.1.x 可用"
+          },
+          "fabric": {
+            "recommended": "0.5.1.d+0.5.0",
+            "minimum": "0.5.0",
+            "notes": ""
+          }
+        },
+        "1.19.2": {
+          "forge": {
+            "recommended": "0.5.0.i",
+            "minimum": "0.5.0",
+            "notes": "1.19.2长期支持版"
+          },
+          "fabric": {
+            "recommended": "0.5.0.h+0.5.0",
+            "minimum": "0.5.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "create_railways": {
+      "name_cn": "机械动力：蒸汽与铁轨 (Create: Steam 'n' Rails)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.7.3",
+            "minimum": "1.7.0",
+            "notes": "需要 Create 6.0.x，1.7.x 适配机械动力新架构",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.7.2",
+            "minimum": "1.7.0",
+            "notes": "1.20.1最后稳定版，需要 Create 0.5.1.x",
+            "depends": {
+              "create": ">=0.5.1, <0.6.0"
+            }
+          }
+        }
+      }
+    },
+    "steam_n_rails": {
+      "name_cn": "机械动力：蒸汽与铁轨 (Steam 'n' Rails,别名)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.7.3",
+            "minimum": "1.7.0",
+            "notes": "别名：Steam 'n' Rails 与 create_railways 为同一模组，mod_id可能为 steam_n_rails",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.7.2",
+            "minimum": "1.7.0",
+            "notes": "",
+            "depends": {
+              "create": ">=0.5.1, <0.6.0"
+            }
+          }
+        }
+      }
+    },
+    "createaddition": {
+      "name_cn": "机械动力：创造拓展 (Create Addition, 别名 create_addition)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.6.0",
+            "minimum": "1.6.0",
+            "notes": "mod_id 为 createaddition/create_addition 均指向本模组，适配机械动力6.x",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.3.2",
+            "minimum": "1.3.0",
+            "depends": {
+              "create": ">=0.5.1"
+            }
+          }
+        }
+      }
+    },
+    "create_calculation": {
+      "name_cn": "机械动力：运算 (Create: Calculation)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "逻辑运算/自动化外设拓展，适配Create 6.x",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "0.3.5",
+            "minimum": "0.3.0",
+            "depends": {
+              "create": ">=0.5.1"
+            }
+          }
+        }
+      }
+    },
+    "create_aeronautics": {
+      "name_cn": "机械动力：航空学 (Create: Aeronautics)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.3.0",
+            "minimum": "1.2.0",
+            "notes": "需同时安装机械动力本体和蒸汽与铁轨以获得完整铁轨网络支持",
+            "depends": {
+              "create": ">=6.0.0",
+              "steam_n_rails": ">=1.7.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.2.4",
+            "minimum": "1.2.0",
+            "depends": {
+              "create": ">=0.5.1"
+            }
+          }
+        }
+      }
+    },
+    "createrecycle": {
+      "name_cn": "机械动力：回收 (Create Recycle)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.5.0",
+            "minimum": "1.4.0",
+            "notes": "物品回收/重铸功能拓展，适配Create 6.x",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.3.0",
+            "minimum": "1.2.0",
+            "depends": {
+              "create": ">=0.5.1"
+            }
+          }
+        }
+      }
+    },
+    "create_crafts_and_additions": {
+      "name_cn": "机械动力：工艺与拓展 (Create Crafts & Additions)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.6.0",
+            "minimum": "1.6.0",
+            "notes": "适配机械动力6.x的新版本",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.3.3",
+            "minimum": "1.3.0",
+            "notes": "",
+            "depends": {
+              "create": ">=0.5.1"
+            }
+          }
+        }
+      }
+    },
+    "create_deco": {
+      "name_cn": "机械动力：装饰 (Create Deco)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.3.2",
+            "minimum": "1.3.0",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        }
+      }
+    },
+    "createdeco_official": {
+      "name_cn": "机械动力装饰 (Createdeco Official)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.3.1",
+            "minimum": "1.3.0",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        }
+      }
+    },
+    "sliceanddice": {
+      "name_cn": "切切乐 (Slice & Dice)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "4.3.3",
+            "minimum": "4.3.0",
+            "notes": "版本号4.x对应MC 1.21.x系列",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "3.3.0",
+            "minimum": "3.2.0",
+            "depends": {
+              "create": ">=0.5.1"
+            }
+          }
+        }
+      }
+    },
+    "create_addition": {
+      "name_cn": "机械动力：创造拓展 (Create: Creative Addition)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.6.0",
+            "minimum": "1.6.0",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        }
+      }
+    },
+    "copycats": {
+      "name_cn": "Copycats",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "3.0.4",
+            "minimum": "3.0.0",
+            "notes": "3.x对应MC 1.21.x系列",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "2.0.7",
+            "minimum": "2.0.0",
+            "depends": {
+              "create": ">=0.5.1"
+            }
+          }
+        }
+      }
+    },
+    "flywheel": {
+      "name_cn": "飞轮 (Flywheel)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.2.6",
+            "minimum": "1.2.0",
+            "notes": "Create 6.x 的渲染引擎依赖，已内置到Create本体（可独立更新）",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.1.1",
+            "minimum": "1.1.0",
+            "notes": "Create 0.5.x 的渲染引擎依赖"
+          }
+        }
+      }
+    },
+    "sodium": {
+      "name_cn": "钠 (Sodium)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "fabric": {
+            "recommended": "0.6.6",
+            "minimum": "0.6.0",
+            "notes": "Fabric/Quilt端最优渲染优化模组"
+          },
+          "neoforge": {
+            "recommended": "Rubidium 1.3.0",
+            "minimum": "Rubidium 1.0.0",
+            "notes": "NeoForge端Sodium的移植版名为Rubidium"
+          }
+        },
+        "1.20.1": {
+          "fabric": {
+            "recommended": "0.5.11",
+            "minimum": "0.5.0",
+            "notes": ""
+          },
+          "forge": {
+            "recommended": "Rubidium 0.7.1",
+            "minimum": "Rubidium 0.7.0",
+            "notes": "Forge端Sodium移植版"
+          }
+        }
+      }
+    },
+    "iris": {
+      "name_cn": "彩虹 (Iris Shaders)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "fabric": {
+            "recommended": "1.8.4",
+            "minimum": "1.8.0",
+            "notes": "需搭配Sodium 0.6.x使用，加载OptiFine格式光影包"
+          }
+        },
+        "1.20.1": {
+          "fabric": {
+            "recommended": "1.7.2",
+            "minimum": "1.7.0",
+            "notes": "需搭配Sodium 0.5.x"
+          }
+        }
+      }
+    },
+    "oculus": {
+      "name_cn": "Oculus (Forge版光影)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "2.2.0",
+            "minimum": "2.0.0",
+            "notes": "Forge/NeoForge端光影模组，需搭配Rubidium使用"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.7.3",
+            "minimum": "1.7.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "ferritecore": {
+      "name_cn": "铁氧体核心 (FerriteCore)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "7.0.3",
+            "minimum": "7.0.0",
+            "notes": "大幅降低内存占用，推荐所有整合包安装"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "6.0.3",
+            "minimum": "6.0.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "embeddium": {
+      "name_cn": "Embeddium (原Rubidium续作)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "2.0.0",
+            "minimum": "2.0.0",
+            "notes": "Rubidium停止维护后的社区续作，可替代Sodium/Rubidium"
+          }
+        }
+      }
+    },
+    "modernui": {
+      "name_cn": "Modern UI",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "4.0.0",
+            "minimum": "4.0.0",
+            "notes": "部分模组的前置UI框架"
+          }
+        }
+      }
+    },
+    "jei": {
+      "name_cn": "物品图鉴 (JEI - Just Enough Items)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "21.1.7",
+            "minimum": "21.0.0",
+            "notes": "版本号首段匹配MC版本"
+          },
+          "fabric": {
+            "recommended": "21.1.7",
+            "minimum": "21.0.0",
+            "notes": ""
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "15.6.0",
+            "minimum": "15.0.0",
+            "notes": "15.x对应1.20.x"
+          }
+        }
+      }
+    },
+    "jade": {
+      "name_cn": "翡翠 (Jade - 提示框显示)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "17.1.2",
+            "minimum": "17.0.0",
+            "notes": "17.x对应MC 1.21.x"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "13.8.5",
+            "minimum": "13.0.0",
+            "notes": "13.x对应MC 1.20.x"
+          }
+        }
+      }
+    },
+    "appleskin": {
+      "name_cn": "苹果皮 (AppleSkin)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "6.0.0",
+            "minimum": "6.0.0",
+            "notes": ""
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "3.0.0",
+            "minimum": "3.0.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "controlling": {
+      "name_cn": "按键控制 (Controlling)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "23.0.0",
+            "minimum": "23.0.0",
+            "notes": ""
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "19.0.1",
+            "minimum": "19.0.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "neoforge": {
+      "name_cn": "NeoForge 加载器",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "21.1.65",
+            "minimum": "21.1.0",
+            "notes": "21.1.x 为1.21.1分支最新稳定版"
+          }
+        }
+      }
+    },
+    "forge": {
+      "name_cn": "Forge 加载器",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "47.3.0",
+            "minimum": "47.1.0",
+            "notes": "47.x为1.20.x分支，47.3.x推荐"
+          }
+        }
+      }
+    },
+    "fun-mod": {
+      "name_cn": "乐事 (Let's Have Fun)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "5.0.0",
+            "minimum": "5.0.0",
+            "notes": "乐事系列主模组，提供休闲娱乐玩法、乐器、游戏道具等",
+            "depends": {
+              "minecraft": "1.21.1"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "4.0.0",
+            "minimum": "4.0.0",
+            "notes": "1.20.1版本乐事"
+          }
+        }
+      }
+    },
+    "fun-addon": {
+      "name_cn": "乐事附属 (Fun Addon)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "2.0.0",
+            "minimum": "2.0.0",
+            "notes": "乐事系列附属模组，增加额外的娱乐内容",
+            "depends": {
+              "fun-mod": ">=5.0.0"
+            }
+          }
+        }
+      }
+    },
+    "ic2": {
+      "name_cn": "工业时代 2 (IndustrialCraft 2)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "2.8.222",
+            "minimum": "2.8.222",
+            "notes": "经典工业模组，提供电力系统、机器、量子装甲等",
+            "depends": {
+              "thermal-core": ">=1.0.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "2.8.222",
+            "minimum": "2.8.222",
+            "notes": "IC2 最后稳定版"
+          }
+        }
+      }
+    },
+    "ic2-classic": {
+      "name_cn": "工业时代 经典 (IC2 Classic)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "IC2 经典回归版，保留老版本玩法机制",
+            "depends": {
+              "ic2": ">=2.8.200"
+            }
+          }
+        }
+      }
+    },
+    "ae2": {
+      "name_cn": "应用能源 2 (Applied Energistics 2)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "15.2.1",
+            "minimum": "15.2.0",
+            "notes": "ME网络存储系统，原版必备的物流存储模组",
+            "depends": {
+              "minecraft": "1.21.1"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "15.1.0",
+            "minimum": "15.0.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "forestry": {
+      "name_cn": "林业 (Forestry)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "6.1.0",
+            "minimum": "6.1.0",
+            "notes": "林业与农业自动化，蜜蜂养殖、树木种植",
+            "depends": {
+              "minecraft": "1.21.1"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "6.0.0",
+            "minimum": "6.0.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "thermal-core": {
+      "name_cn": "热力核心 (Thermal Core)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.1",
+            "minimum": "1.0.0",
+            "notes": "热力系列前置核心库"
+          }
+        }
+      }
+    },
+    "thermal-expansion": {
+      "name_cn": "热力扩展 (Thermal Expansion)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "热力系列机器，提供各种实用机器与能源生产",
+            "depends": {
+              "thermal-core": ">=1.0.0"
+            }
+          }
+        }
+      }
+    },
+    "thermal-dynamics": {
+      "name_cn": "热力气动 (Thermal Dynamics)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "热力系列物流管道",
+            "depends": {
+              "thermal-core": ">=1.0.0"
+            }
+          }
+        }
+      }
+    },
+    "storagedrawers": {
+      "name_cn": "抽屉 (Storage Drawers)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "高容量存储抽屉，适合分类存放物品"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "12.0.0",
+            "minimum": "12.0.0",
+            "notes": "1.20.1版本抽屉"
+          }
+        }
+      }
+    },
+    "ironchest": {
+      "name_cn": "更多箱子 (Iron Chests)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "14.0.0",
+            "minimum": "14.0.0",
+            "notes": "提供多种材质的大容量箱子"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "13.0.0",
+            "minimum": "13.0.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "tconstruct": {
+      "name_cn": "匠魂 (Tinkers' Construct)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "3.9.0",
+            "minimum": "3.9.0",
+            "notes": "打造自定义武器与工具，兼容性极高的魔法+科技玩法",
+            "depends": {
+              "minecraft": "1.21.1"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "3.6.0",
+            "minimum": "3.6.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "pamharvestcraft": {
+      "name_cn": "丰收工艺 (Pam's HarvestCraft)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "21.0.0",
+            "minimum": "21.0.0",
+            "notes": "大量农作物和食物的模组"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "20.0.0",
+            "minimum": "20.0.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "farmersdelight": {
+      "name_cn": "农夫乐事 (Farmer's Delight)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.2.0",
+            "minimum": "1.2.0",
+            "notes": "拓展原版农业与烹饪系统，增加大量食物与作物"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.1.0",
+            "minimum": "1.1.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "extrabowman": {
+      "name_cn": "更多弓手 (Extra Archers)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.5.0",
+            "minimum": "1.5.0",
+            "notes": "拓展原版弓手，增加多种特色弓手与箭矢"
+          }
+        }
+      }
+    },
+    "morph": {
+      "name_cn": "生物变形 (Morph)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "变成任何你击杀过的生物，获得不同能力"
+          }
+        }
+      }
+    },
+    "twilightforest": {
+      "name_cn": "暮色森林 (Twilight Forest)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "经典冒险模组，提供暮色维度、新Boss与迷宫"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "4.3.0",
+            "minimum": "4.3.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "thaumcraft": {
+      "name_cn": "神秘时代 4 (Thaumcraft)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "4.3.0",
+            "minimum": "4.3.0",
+            "notes": "经典魔法模组，研究奥术、炼金术与巫术"
+          }
+        }
+      }
+    },
+    "twilightforest-dungeons": {
+      "name_cn": "暮色地牢 (Twilight Dungeons)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "暮色森林地牢拓展"
+          }
+        }
+      }
+    }
+  }
+}
