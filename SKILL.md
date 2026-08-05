@@ -1,9 +1,12 @@
 ---
-name: mc-ecosystem-adapt-engineer
+name: MC全生态智能适配工程师
+slug: mc-ecosystem-adapt-engineer
 version: 1.0.0
 description: Minecraft 模组全生态智能适配工具，支持模组检索、环境搭建、Mixin冲突扫描、崩溃修复、汉化、移植评估等10大功能
 author: Liang030214
 homepage: https://github.com/Liang030214/mc-skill-v1
+icon: assets/icon-market.jpg
+icon_local: assets/icon-local.jpg
 tags:
   - minecraft
   - mod
