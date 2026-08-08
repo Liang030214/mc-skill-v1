@@ -1,9 +1,11 @@
 {
   "_meta": {
     "description": "MC模组版本推荐数据库（根据MC版本和加载器给出最佳匹配模组版本）",
-    "version": "1.0",
-    "last_updated": "2026-08-04",
-    "note": "版本优先级：稳定版 > Beta > Alpha。推荐版本为当前MC版本+加载器下官方发布的最新稳定版"
+    "version": "1.1",
+    "last_updated": "2026-08-07",
+    "note": "V1.0.1 扩充版本: 新增机械动力周边、乐事系列、科技能源、红石魔改4大类模组",
+    "total_mods": 78,
+    "auto_update": true
   },
   "mods": {
     "create": {
@@ -11,9 +13,9 @@
       "minecraft_versions": {
         "1.21.1": {
           "neoforge": {
-            "recommended": "6.0.10",
-            "minimum": "6.0.0",
-            "notes": "6.0.x 为1.21.1分支的稳定版，架构发生重构，不兼容5.x的Mixin"
+            "recommended": "6.0.10+mc1.21.1",
+            "minimum": "6.0.10+mc1.21.1",
+            "notes": "自动获取于 2026-08-07"
           },
           "forge": {
             "recommended": "6.0.10",
@@ -55,7 +57,9 @@
             "notes": ""
           }
         }
-      }
+      },
+      "last_updated": "2026-08-07",
+      "source": "auto_updated_merged"
     },
     "create_railways": {
       "name_cn": "机械动力：蒸汽与铁轨 (Create: Steam 'n' Rails)",
@@ -112,12 +116,9 @@
       "minecraft_versions": {
         "1.21.1": {
           "neoforge": {
-            "recommended": "1.6.0",
-            "minimum": "1.6.0",
-            "notes": "mod_id 为 createaddition/create_addition 均指向本模组，适配机械动力6.x",
-            "depends": {
-              "create": ">=6.0.0"
-            }
+            "recommended": "neoforge-1.21.1-1.6.0",
+            "minimum": "neoforge-1.21.1-1.6.0",
+            "notes": "自动获取于 2026-08-07"
           }
         },
         "1.20.1": {
@@ -129,7 +130,9 @@
             }
           }
         }
-      }
+      },
+      "last_updated": "2026-08-07",
+      "source": "auto_updated_merged"
     },
     "create_calculation": {
       "name_cn": "机械动力：运算 (Create: Calculation)",
@@ -300,12 +303,9 @@
       "minecraft_versions": {
         "1.21.1": {
           "neoforge": {
-            "recommended": "3.0.4",
-            "minimum": "3.0.0",
-            "notes": "3.x对应MC 1.21.x系列",
-            "depends": {
-              "create": ">=6.0.0"
-            }
+            "recommended": "3.0.4+mc.1.21.1-neoforge",
+            "minimum": "3.0.4+mc.1.21.1-neoforge",
+            "notes": "自动获取于 2026-08-07"
           }
         },
         "1.20.1": {
@@ -317,7 +317,9 @@
             }
           }
         }
-      }
+      },
+      "last_updated": "2026-08-07",
+      "source": "auto_updated_merged"
     },
     "flywheel": {
       "name_cn": "飞轮 (Flywheel)",
@@ -877,6 +879,504 @@
             "recommended": "1.0.0",
             "minimum": "1.0.0",
             "notes": "暮色森林地牢拓展"
+          }
+        }
+      }
+    },
+    "create_factory": {
+      "name_cn": "机械动力：工厂 (Create: Factory)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.2.0",
+            "minimum": "1.2.0",
+            "notes": "机械动力自动化工厂拓展，增加传送带分拣、机械臂等",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        }
+      }
+    },
+    "create_enchantment_industry": {
+      "name_cn": "机械动力：附魔工业 (Create: Enchantment Industry)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "机械动力附魔拓展，自动附魔系统",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        }
+      }
+    },
+    "create_minecraft_industrial": {
+      "name_cn": "机械动力：MC工业 (Create: Minecraft Industrial)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "机械动力与原版工业系统联动",
+            "depends": {
+              "create": ">=6.0.0"
+            }
+          }
+        }
+      }
+    },
+    "kitchensdelight": {
+      "name_cn": "厨房乐事 (Kitchen's Delight)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "农夫乐事的厨房拓展，增加更多烹饪食谱和厨房用具",
+            "depends": {
+              "farmersdelight": ">=1.2.0"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "0.1.0",
+            "minimum": "0.1.0",
+            "notes": "1.20.1版本测试版"
+          }
+        }
+      }
+    },
+    "cookingforblockheads": {
+      "name_cn": "方块料理 (Cooking for Blockheads)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "16.0.0",
+            "minimum": "16.0.0",
+            "notes": "提供多功能厨房方块、冰箱、炉灶等，与农夫乐事联动"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "15.0.0",
+            "minimum": "15.0.0",
+            "notes": "15.x对应1.20.x"
+          }
+        }
+      }
+    },
+    "spiceoflife": {
+      "name_cn": "生活调味料 (Spice of Life)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "10.0.0",
+            "minimum": "10.0.0",
+            "notes": "食物多样化奖励系统，鼓励尝试不同食物"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "9.0.0",
+            "minimum": "9.0.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "mekanism": {
+      "name_cn": "机械动力 (Mekanism)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "10.0.21",
+            "minimum": "10.0.0",
+            "notes": "高级科技模组，提供核电、量子自动化、机器人等",
+            "depends": {
+              "minecraft": "1.21.1"
+            }
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "9.7.12",
+            "minimum": "9.7.0",
+            "notes": "9.x对应1.20.x"
+          }
+        }
+      }
+    },
+    "immersiveengineering": {
+      "name_cn": "沉浸工程 (Immersive Engineering)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "17.0.0",
+            "minimum": "17.0.0",
+            "notes": "硬核工程向模组，提供电力网络、自动化、武器等"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "16.0.1",
+            "minimum": "16.0.0",
+            "notes": "16.x对应1.20.x"
+          }
+        }
+      }
+    },
+    "immersiveposts": {
+      "name_cn": "沉浸邮件 (Immersive Posts)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "5.0.0",
+            "minimum": "5.0.0",
+            "notes": "沉浸工程的邮电网络拓展，添加邮件/物品传输系统",
+            "depends": {
+              "immersiveengineering": ">=17.0.0"
+            }
+          }
+        }
+      }
+    },
+    "techreborn": {
+      "name_cn": "科技重生 (Tech Reborn)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "4.0.0",
+            "minimum": "4.0.0",
+            "notes": "经典科技模组复兴，融合IC2、RC等模组的精华"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "3.0.0",
+            "minimum": "3.0.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "actuallyadditions": {
+      "name_cn": "更多实用设备 (Actually Additions)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "19.0.0",
+            "minimum": "19.0.0",
+            "notes": "添加大量实用物品和方块，包括世界锚、能量转换器等"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "18.0.0",
+            "minimum": "18.0.0",
+            "notes": "18.x对应1.20.x"
+          }
+        }
+      }
+    },
+    "extrautils2": {
+      "name_cn": "更多实用工具2 (Extra Utilities 2)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "更多实用工具续作，添加各种便利物品和方块"
+          }
+        }
+      }
+    },
+    "bigreactors": {
+      "name_cn": "大型反应堆 (Big Reactors)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "2.0.0",
+            "minimum": "2.0.0",
+            "notes": "模块化核反应堆模组，可设计自己的反应堆"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.1.1",
+            "minimum": "1.1.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "redstoneflux": {
+      "name_cn": "红石通量 (Redstone Flux)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "4.0.0",
+            "minimum": "4.0.0",
+            "notes": "RF能量系统核心，许多科技模组的能量基础"
+          }
+        }
+      }
+    },
+    "buildcraft": {
+      "name_cn": "建筑工艺 (BuildCraft)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "7.2.0",
+            "minimum": "7.2.0",
+            "notes": "经典红石自动化模组，提供管道、机器人、自动合成等"
+          }
+        }
+      }
+    },
+    "railcraft": {
+      "name_cn": "铁路工艺 (RailCraft)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "12.1.0",
+            "minimum": "12.0.0",
+            "notes": "拓展矿车系统，添加新铁轨、车站、工业矿车等"
+          }
+        }
+      }
+    },
+    "logisticspipes": {
+      "name_cn": "物流管道 (Logistics Pipes)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "0.10.2",
+            "minimum": "0.10.0",
+            "notes": "基于BC管道的高级物流管理系统，智能物品分发"
+          }
+        }
+      }
+    },
+    "logisticsbuddies": {
+      "name_cn": "物流伙伴 (Logistics Buddies)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.0.4",
+            "minimum": "1.0.0",
+            "notes": "物流管道的附属模组，增加更多物流节点"
+          }
+        }
+      }
+    },
+    "xnet": {
+      "name_cn": "交叉网络 (XNet)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "3.0.0",
+            "minimum": "3.0.0",
+            "notes": "简化的物品/能量/流体网络系统"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "2.0.2",
+            "minimum": "2.0.0",
+            "notes": "2.x对应1.20.x"
+          }
+        }
+      }
+    },
+    "refinedstorage": {
+      "name_cn": "精炼存储 (Refined Storage)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.12.0",
+            "minimum": "1.12.0",
+            "notes": "现代化的物品存储网络系统，ME网络的替代品"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.6.0",
+            "minimum": "1.6.0",
+            "notes": "1.6.x对应1.20.x"
+          }
+        }
+      }
+    },
+    "draconicevolution": {
+      "name_cn": "龙之进化 (Draconic Evolution)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "3.0.0",
+            "minimum": "3.0.0",
+            "notes": "高级魔法科技模组，融合魔法与科技，包含强大装备和能量系统"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "2.4.0",
+            "minimum": "2.4.0",
+            "notes": "2.x对应1.20.x"
+          }
+        }
+      }
+    },
+    "cyclic": {
+      "name_cn": "循环 (Cyclic)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "1.12.0",
+            "minimum": "1.12.0",
+            "notes": "大型杂项模组，添加大量实用物品和方块"
+          }
+        },
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.10.0",
+            "minimum": "1.10.0",
+            "notes": ""
+          }
+        }
+      }
+    },
+    "openblocks": {
+      "name_cn": "开源方块 (OpenBlocks)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.10.0",
+            "minimum": "1.10.0",
+            "notes": "添加各种有趣的方块和物品，包括吊桥、彩色灯光等"
+          }
+        }
+      }
+    },
+    "computer-craft": {
+      "name_cn": "电脑工艺 (ComputerCraft)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.81.2",
+            "minimum": "1.81.0",
+            "notes": "在MC中编程！添加可编程电脑和机器人"
+          }
+        }
+      }
+    },
+    "rftools": {
+      "name_cn": "RF工具 (RFTools)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "neoforge": {
+            "recommended": "10.0.0",
+            "minimum": "10.0.0",
+            "notes": "基于RF能量的实用工具模组，添加各种便利设备"
+          }
+        }
+      }
+    },
+    "arsmagica": {
+      "name_cn": "神秘魔法 (Ars Magica)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "现代魔法模组，可自定义法师塔和魔法仪式"
+          }
+        }
+      }
+    },
+    "bloodmagic": {
+      "name_cn": "血魔法 (Blood Magic)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "3.2.0",
+            "minimum": "3.2.0",
+            "notes": "黑暗魔法模组，用生命和灵魂换取强大力量"
+          }
+        }
+      }
+    },
+    "roots": {
+      "name_cn": "根源 (Roots)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.2.0",
+            "minimum": "1.2.0",
+            "notes": "自然魔法模组， Druidic 草药学和自然仪式"
+          }
+        }
+      }
+    },
+    "aether": {
+      "name_cn": "以太 (The Aether)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "1.0.0",
+            "minimum": "1.0.0",
+            "notes": "天空维度冒险模组，经典MC冒险mod"
+          }
+        }
+      }
+    },
+    "psi": {
+      "name_cn": "PSI (Psi)",
+      "minecraft_versions": {
+        "1.20.1": {
+          "forge": {
+            "recommended": "84.0",
+            "minimum": "84.0",
+            "notes": "编程式魔法模组，通过代码释放魔法能力"
+          }
+        }
+      }
+    },
+    "lithium": {
+      "name_cn": "锂 (Lithium)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "fabric": {
+            "recommended": "0.13.0",
+            "minimum": "0.13.0",
+            "notes": "Fabric服务端优化模组，提升整体性能"
+          }
+        }
+      }
+    },
+    "phosphor": {
+      "name_cn": "磷 (Phosphor)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "fabric": {
+            "recommended": "0.13.0",
+            "minimum": "0.13.0",
+            "notes": "Fabric光照引擎优化模组"
+          }
+        }
+      }
+    },
+    "starlight": {
+      "name_cn": "星光 (Starlight)",
+      "minecraft_versions": {
+        "1.21.1": {
+          "fabric": {
+            "recommended": "1.2.0",
+            "minimum": "1.2.0",
+            "notes": "Fabric光照优化模组，替代Phosphor"
           }
         }
       }

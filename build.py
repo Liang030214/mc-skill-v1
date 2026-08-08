@@ -6,6 +6,7 @@ import os
 import zipfile
 import shutil
 import subprocess
+import fnmatch
 from pathlib import Path
 from datetime import datetime
 
@@ -13,8 +14,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 OUTPUT_DIR = PROJECT_ROOT / "dist"
 
 # 需要打包的文件/目录
-INCLUDE_DIRS = ["core", "data", "utils"]
-INCLUDE_FILES = ["main.py", "config.py", "requirements.txt", "README.md"]
+INCLUDE_DIRS = ["core", "data", "utils", "locales", "assets"]
+INCLUDE_FILES = ["main.py", "config.py", "requirements.txt", "README.md", "SKILL.md"]
 
 # 排除的文件模式
 EXCLUDE_PATTERNS = [
@@ -28,6 +29,8 @@ EXCLUDE_PATTERNS = [
     "dist",
     "temp",
     "verify_*.py",
+    "_verify_*.py",
+    "_test_*.py",
     "_expand_db.py",
     "*.log",
     "*.tmp",
@@ -35,13 +38,24 @@ EXCLUDE_PATTERNS = [
 
 
 def should_exclude(file_path: Path) -> bool:
-    """检查文件是否应该被排除"""
+    """检查文件是否应该被排除（支持 * 通配符匹配）"""
     file_name = file_path.name
     for pattern in EXCLUDE_PATTERNS:
-        if pattern.startswith("*"):
-            # 通配符匹配扩展名
-            ext = pattern[1:]  # 去掉 *
+        if pattern.startswith("*") and pattern.endswith("*"):
+            inner = pattern[1:-1]
+            if inner in file_name:
+                return True
+        elif pattern.startswith("*"):
+            ext = pattern[1:]
             if file_name.endswith(ext):
+                return True
+        elif pattern.endswith("*"):
+            prefix = pattern[:-1]
+            if file_name.startswith(prefix):
+                return True
+        elif "*" in pattern:
+            import fnmatch
+            if fnmatch.fnmatch(file_name, pattern):
                 return True
         elif file_name == pattern:
             return True
@@ -102,6 +116,234 @@ def create_zip():
     _create_run_scripts(OUTPUT_DIR)
 
     return zip_path
+
+
+SKILL_EXCLUDE_PATTERNS = EXCLUDE_PATTERNS + [
+    "*.bat",
+    "*.spec",
+    "*.exe",
+    "_run_*.py",
+    "_verify_*.py",
+    "_test_*.py",
+    "_expand_*.py",
+    "_setup_*.py",
+    "_exe_entry.py",
+    "diag.*",
+    "start.*",
+    "run_p4.*",
+]
+
+
+def create_skill_package(version_override=None, git_ref=None):
+    """创建 Skill 市场发布包
+    
+    Args:
+        version_override: 覆盖版本号
+        git_ref: 从 Git 历史提取指定版本的代码（如 commit hash 或 tag）
+    """
+    import re
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+    # 如果指定了 git_ref，从历史中提取代码到临时目录
+    source_root = PROJECT_ROOT
+    temp_dir = None
+    
+    if git_ref:
+        print(f"📥 从 Git 历史提取代码: {git_ref}", flush=True)
+        temp_dir = OUTPUT_DIR / f"_temp_{git_ref[:8]}"
+        if temp_dir.exists():
+            shutil.rmtree(temp_dir, ignore_errors=True)
+        temp_dir.mkdir(parents=True)
+        
+        # 使用 git archive 提取指定版本的文件
+        subprocess.run(
+            ["git", "archive", "--format=tar", git_ref],
+            cwd=PROJECT_ROOT,
+            check=True,
+            stdout=subprocess.PIPE
+        )
+        # 用 tar 解压（如果系统有 tar）
+        import tarfile, io
+        result = subprocess.run(
+            ["git", "archive", "--format=tar", git_ref],
+            cwd=PROJECT_ROOT,
+            check=True,
+            stdout=subprocess.PIPE
+        )
+        with tarfile.open(fileobj=io.BytesIO(result.stdout), mode='r') as tar:
+            # 只提取需要的文件
+            skip_patterns = ['.git', '__pycache__']
+            for member in tar.getmembers():
+                skip = False
+                for pattern in skip_patterns:
+                    if pattern in member.name:
+                        skip = True
+                        break
+                if skip:
+                    continue
+                tar.extract(member, temp_dir)
+        
+        source_root = temp_dir
+        print(f"✅ 代码提取完成: {temp_dir}", flush=True)
+    
+    # 确定版本号
+    skill_md_path = source_root / "SKILL.md"
+    original_version = None
+    
+    if version_override and skill_md_path.exists():
+        content = skill_md_path.read_text(encoding='utf-8')
+        match = re.search(r'^version:\s*([^\n]+)', content, re.MULTILINE)
+        if match:
+            original_version = match.group(1).strip().strip('"').strip("'")
+            new_content = re.sub(r'^version:\s*[^\n]+', f'version: "{version_override}"', content, flags=re.MULTILINE)
+            skill_md_path.write_text(new_content, encoding='utf-8')
+            print(f"📝 设置版本号: {original_version} -> {version_override}", flush=True)
+    
+    # 读取当前版本号
+    if skill_md_path.exists():
+        current_content = skill_md_path.read_text(encoding='utf-8')
+        version_match = re.search(r'^version:\s*([^\n]+)', current_content, re.MULTILINE)
+        current_version = version_match.group(1).strip().strip('"').strip("'") if version_match else "unknown"
+    else:
+        current_version = version_override or "unknown"
+    
+    # 解析版本号
+    version_parts = current_version.split('.')
+    major_version = version_parts[0] if len(version_parts) > 0 else "1"
+    
+    # 版本化目录结构
+    major_dir_name = f"V{major_version}.+.+"
+    version_dir = OUTPUT_DIR / major_dir_name / current_version
+    version_dir.mkdir(parents=True, exist_ok=True)
+    
+    skill_folder_name = f"mc-ecosystem-adapt-engine-v{current_version}"
+    skill_folder_path = version_dir / skill_folder_name
+    zip_path = version_dir / f"{skill_folder_name}.zip"
+
+    print(f"📦 开始创建 Skill 发布包 (版本 {current_version})...", flush=True)
+    print(f"📁 输出目录: {version_dir}", flush=True)
+
+    # === 1. 构建文件夹版本 ===
+    print(f"📁 创建用于上传的文件夹: {skill_folder_name}", flush=True)
+    
+    if skill_folder_path.exists():
+        shutil.rmtree(skill_folder_path)
+        
+    skill_root_path = skill_folder_path
+
+    skill_files = ["SKILL.md", "README.md"]
+    for file_name in skill_files:
+        file_path = source_root / file_name
+        if file_path.exists():
+            dest_path = skill_root_path / file_name
+            dest_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(file_path, dest_path)
+            print(f"  ✅ {file_name}", flush=True)
+
+    skill_include_dirs = ["core", "data", "utils", "locales", "assets", "scripts"]
+    for dir_name in skill_include_dirs:
+        dir_path = source_root / dir_name
+        if not dir_path.exists():
+            print(f"  ⚠️  目录 {dir_name} 不存在，跳过", flush=True)
+            continue
+            
+        dest_dir = skill_root_path / dir_name
+        dest_dir.mkdir(parents=True, exist_ok=True)
+
+        for root, dirs, files in os.walk(dir_path):
+            dirs_to_remove = []
+            for d in dirs:
+                if _skill_should_exclude(Path(root) / d):
+                    dirs_to_remove.append(d)
+            for d in dirs_to_remove:
+                dirs.remove(d)
+
+            for file in files:
+                file_path = Path(root) / file
+                if _skill_should_exclude(file_path):
+                    continue
+                    
+                relative_path = file_path.relative_to(source_root)
+                dest_file = skill_root_path / relative_path
+                dest_file.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(file_path, dest_file)
+
+    root_files = ["main.py", "config.py", "requirements.txt"]
+    for file_name in root_files:
+        file_path = source_root / file_name
+        if file_path.exists():
+            dest_path = skill_root_path / file_name
+            shutil.copy2(file_path, dest_path)
+            print(f"  ✅ {file_name}", flush=True)
+    
+    print(f"✅ 文件夹创建完成: {skill_folder_path}", flush=True)
+    
+    # === 2. 创建 zip 版本 ===
+    print(f"📦 正在创建 zip 压缩包: {zip_path.name}", flush=True)
+    with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zf:
+        for root, dirs, files in os.walk(skill_folder_path):
+            for file in files:
+                file_path = Path(root) / file
+                arcname = f"{skill_folder_name}/{file_path.relative_to(skill_folder_path.parent)}"
+                zf.write(file_path, str(arcname))
+    print(f"✅ zip 压缩包创建完成: {zip_path}", flush=True)
+
+    # === 3. 清理临时目录 ===
+    if temp_dir and temp_dir.exists():
+        shutil.rmtree(temp_dir, ignore_errors=True)
+        print(f"🧹 清理临时目录完成", flush=True)
+
+    return skill_folder_path, zip_path
+
+
+def _skill_should_exclude(file_path: Path) -> bool:
+    """Skill 市场发布专用的排除检查"""
+    file_name = file_path.name
+    for pattern in SKILL_EXCLUDE_PATTERNS:
+        if pattern.startswith("*") and pattern.endswith("*"):
+            inner = pattern[1:-1]
+            if inner in file_name:
+                return True
+        elif pattern.startswith("*"):
+            ext = pattern[1:]
+            if file_name.endswith(ext):
+                return True
+        elif pattern.endswith("*"):
+            prefix = pattern[:-1]
+            if file_name.startswith(prefix):
+                return True
+        elif "*" in pattern:
+            if fnmatch.fnmatch(file_name, pattern):
+                return True
+        elif file_name == pattern:
+            return True
+        elif pattern in str(file_path).replace("\\", "/"):
+            return True
+    return False
+
+
+def _print_package_contents(zip_path: Path, skill_root: str):
+    """打印发布包内容清单"""
+    print(f"\n📋 发布包内容清单:", flush=True)
+    with zipfile.ZipFile(zip_path, "r") as zf:
+        all_names = zf.namelist()
+        print(f"  总文件数: {len(all_names)}", flush=True)
+
+        top_dirs = set()
+        for name in all_names:
+            parts = name.split("/")
+            if len(parts) >= 2:
+                top_dirs.add(parts[1])
+        print(f"  顶层目录/文件: {', '.join(sorted(top_dirs))}", flush=True)
+
+        dir_counts = {}
+        for name in all_names:
+            parts = name.split("/")
+            if len(parts) >= 2:
+                top = parts[1]
+                dir_counts[top] = dir_counts.get(top, 0) + 1
+        for d, c in sorted(dir_counts.items(), key=lambda x: -x[1]):
+            print(f"    - {d}/ ({c} 个文件)", flush=True)
 
 
 def _create_run_scripts(output_dir: Path):
@@ -428,6 +670,35 @@ def main():
 
     # 检查命令行参数
     build_exe_flag = "--exe" in sys.argv
+    skill_package_flag = "--skill-package" in sys.argv
+    
+    # 检查 --set-version 参数
+    version_override = None
+    if "--set-version" in sys.argv:
+        idx = sys.argv.index("--set-version")
+        if idx + 1 < len(sys.argv):
+            version_override = sys.argv[idx + 1]
+    
+    # 检查 --git-ref 参数（从历史版本提取代码）
+    git_ref = None
+    if "--git-ref" in sys.argv:
+        idx = sys.argv.index("--git-ref")
+        if idx + 1 < len(sys.argv):
+            git_ref = sys.argv[idx + 1]
+
+    if skill_package_flag:
+        # Skill 市场发布包
+        skill_folder, skill_zip = create_skill_package(version_override, git_ref)
+        print("\n🎉 Skill 市场发布包已生成:", flush=True)
+        print(f"   📁 文件夹 (用于拖拽上传): {skill_folder}", flush=True)
+        print(f"   📦 zip压缩包 (备用): {skill_zip.name} ({skill_zip.stat().st_size / 1024:.1f} KB)", flush=True)
+        if git_ref:
+            print(f"   📜 代码来源: Git commit {git_ref[:8]}", flush=True)
+        print("\n📖 Skill 市场发布说明:", flush=True)
+        print("   方式一 (推荐): 直接拖拽文件夹到 ClawHub", flush=True)
+        print("   方式二: 上传 zip 压缩包", flush=True)
+        print("   方式三: 选择 '从 GitHub 导入'，连接你的仓库", flush=True)
+        return 0
 
     if build_exe_flag:
         # PyInstaller 打包（生成 exe）

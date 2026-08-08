@@ -408,6 +408,28 @@ class ModrinthClient(APIClient):
 
         return self.get(f"project/{slug}/version", params=params)
 
+    def get_categories(self) -> List[Dict]:
+        """获取Modrinth所有可用的模组分类
+
+        Returns:
+            分类列表
+        """
+        try:
+            result = self.get("tag/category")
+            return result if isinstance(result, list) else []
+        except Exception as e:
+            logger.error(f"获取分类失败: {e}")
+            return []
+
+    def get_search_categories(self) -> List[str]:
+        """获取用于搜索的分类名称列表
+
+        Returns:
+            分类名称列表
+        """
+        categories = self.get_categories()
+        return [cat.get("category", "") for cat in categories if cat.get("category")]
+
 
 class CurseForgeClient(APIClient):
     """CurseForge API客户端"""

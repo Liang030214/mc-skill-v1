@@ -20,6 +20,8 @@ import webbrowser
 from datetime import datetime
 from pathlib import Path
 
+from core.i18n import t
+
 # === 资源目录 ===
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 _PAYMENT_DIR = _PROJECT_ROOT / "data" / "payment"
@@ -27,33 +29,33 @@ _OUTPUT_DIR = _PROJECT_ROOT / "output"
 
 # === 二维码图片路径 ===
 QR_FILES = {
-    "wechat_official": _PAYMENT_DIR / "wechat_official.png",   # 微信公众号
-    "afdian":          _PAYMENT_DIR / "afdian.png",              # 爱发电
-    "personal_pay":    _PAYMENT_DIR / "personal_pay.png",       # 支付宝/微信个人付款
-    "merchant":        _PAYMENT_DIR / "merchant.png",            # 小红书/微信商户
+    "wechat_official": _PAYMENT_DIR / "wechat_official.png",
+    "afdian":          _PAYMENT_DIR / "afdian.png",
+    "personal_pay":    _PAYMENT_DIR / "personal_pay.png",
+    "merchant":        _PAYMENT_DIR / "merchant.png",
 }
 
 # === 二维码显示信息 ===
 QR_INFO = {
     "wechat_official": {
-        "title": "微信公众号",
-        "subtitle": "关注获取最新动态",
-        "desc": "关注公众号，获取功能更新、使用教程和优惠信息",
+        "title": t("payment.qr_wechat_title"),
+        "subtitle": t("payment.qr_wechat_subtitle"),
+        "desc": t("payment.qr_wechat_desc"),
     },
     "afdian": {
-        "title": "爱发电",
-        "subtitle": "赞助开发者",
-        "desc": "在爱发电平台选择月度赞助或一次性发电，支持项目持续开发",
+        "title": t("payment.qr_afdian_title"),
+        "subtitle": t("payment.qr_afdian_subtitle"),
+        "desc": t("payment.qr_afdian_desc"),
     },
     "personal_pay": {
-        "title": "扫码赞赏",
-        "subtitle": "微信 / 支付宝",
-        "desc": "扫码直接赞赏任意金额，感谢您的支持",
+        "title": t("payment.qr_personal_title"),
+        "subtitle": t("payment.qr_personal_subtitle"),
+        "desc": t("payment.qr_personal_desc"),
     },
     "merchant": {
-        "title": "商户付款",
-        "subtitle": "小红书 / 微信商户",
-        "desc": "通过商户平台付款，可获取电子凭证",
+        "title": t("payment.qr_merchant_title"),
+        "subtitle": t("payment.qr_merchant_subtitle"),
+        "desc": t("payment.qr_merchant_desc"),
     },
 }
 
@@ -90,7 +92,6 @@ def _get_qr_data(key: str) -> str:
     img_path = QR_FILES.get(key)
     if img_path and img_path.exists():
         return _image_to_base64(img_path)
-    # 占位图
     info = QR_INFO.get(key, {})
     return _generate_placeholder_svg(info.get("title", "二维码"), "待替换")
 
@@ -98,21 +99,18 @@ def _get_qr_data(key: str) -> str:
 def _build_html(reason: str = "") -> str:
     """生成完整的 HTML 付费引导页面"""
 
-    # 获取4个二维码数据
     qr_data = {key: _get_qr_data(key) for key in QR_FILES}
 
-    # 会员定价表
-    pricing_rows = """
-    <tr><td>单月包月</td><td>8.88 元/月</td><td>单次付费，到期手动续费</td></tr>
-    <tr><td>连续包月</td><td>8.88 元/月</td><td>自动续费，可随时取消</td></tr>
-    <tr><td>包季</td><td>23.88 元/季</td><td>相比月付省约 2.76 元</td></tr>
-    <tr><td>包年</td><td>88.88 元/年</td><td>相比月付省约 17.68 元</td></tr>
+    pricing_rows = f"""
+    <tr><td>{t("auth.pricing_monthly")}</td><td>{t("payment.pricing_monthly_price")}</td><td>{t("payment.pricing_monthly_desc")}</td></tr>
+    <tr><td>{t("auth.pricing_monthly_auto")}</td><td>{t("payment.pricing_monthly_auto_price")}</td><td>{t("payment.pricing_monthly_auto_desc")}</td></tr>
+    <tr><td>{t("auth.pricing_quarterly")}</td><td>{t("payment.pricing_quarterly_price")}</td><td>{t("payment.pricing_quarterly_desc")}</td></tr>
+    <tr><td>{t("auth.pricing_yearly")}</td><td>{t("payment.pricing_yearly_price")}</td><td>{t("payment.pricing_yearly_desc")}</td></tr>
     """
 
-    # 各等级次数对比
-    tier_rows = """
-    <tr><td>免费用户</td><td>20 次/日</td><td>8 次/日</td><td>1 次/日</td></tr>
-    <tr class="highlight"><td>普通会员</td><td>100 次/日</td><td>50 次/日</td><td>5 次/日</td></tr>
+    tier_rows = f"""
+    <tr><td>{t("payment.tier_free")}</td><td>20 次/日</td><td>8 次/日</td><td>1 次/日</td></tr>
+    <tr class="highlight"><td>{t("payment.tier_normal")}</td><td>100 次/日</td><td>50 次/日</td><td>5 次/日</td></tr>
     """
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M")
@@ -122,7 +120,7 @@ def _build_html(reason: str = "") -> str:
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MC Skill V1 - 升级普通会员</title>
+<title>MC Skill V1 - {t("payment.title")}</title>
 <style>
   * {{ margin: 0; padding: 0; box-sizing: border-box; }}
   body {{
@@ -238,43 +236,43 @@ def _build_html(reason: str = "") -> str:
 
   <!-- 标题 -->
   <div class="header">
-    <h1>MC 全生态智能适配工程师</h1>
-    <p>升级普通会员，解锁更多次数与高级功能</p>
+    <h1>{t("payment.header_title")}</h1>
+    <p>{t("payment.header_subtitle")}</p>
   </div>
 
   <!-- 提醒 -->
   <div class="alert">
-    {'⚠️ ' + reason if reason else '⚠️ 您的免费额度已用完，升级普通会员可继续使用'}
-    <br><small>当前时间: {now}</small>
+    {'⚠️ ' + reason if reason else '⚠️ ' + t("payment.free_expired")}
+    <br><small>{t("payment.current_time")}: {now}</small>
   </div>
 
   <!-- 会员等级对比 -->
   <div class="section">
-    <h2>会员等级对比</h2>
+    <h2>{t("payment.compare_tiers")}</h2>
     <table>
       <thead>
-        <tr><th>等级</th><th>全自动功能</th><th>半自动功能</th><th>移植评估</th></tr>
+        <tr><th>{t("payment.column_tier")}</th><th>{t("payment.column_auto")}</th><th>{t("payment.column_semi")}</th><th>{t("payment.column_migration")}</th></tr>
       </thead>
       <tbody>
         {tier_rows}
       </tbody>
     </table>
     <div class="tip-box">
-      普通会员全自动 100次/日（是免费用户的 5 倍），半自动 50次/日，移植评估 5次/日
+      {t("payment.tip_normal")}
     </div>
   </div>
 
   <!-- 4个二维码 -->
   <div class="section">
-    <h2>扫码付费 / 赞助</h2>
+    <h2>{t("payment.scan_title")}</h2>
     <p style="color:#666; font-size:14px; margin-bottom:15px;">
-      选择以下任意方式完成付费，截图发送至公众号即可激活普通会员:
+      {t("payment.scan_desc")}
     </p>
     <div class="qr-grid">
 
       <!-- 1. 微信公众号 -->
       <div class="qr-card">
-        <img src="{qr_data['wechat_official']}" alt="微信公众号">
+        <img src="{qr_data['wechat_official']}" alt="WeChat Official">
         <div class="qr-title">{QR_INFO['wechat_official']['title']}</div>
         <div class="qr-sub">{QR_INFO['wechat_official']['subtitle']}</div>
         <div class="qr-desc">{QR_INFO['wechat_official']['desc']}</div>
@@ -282,7 +280,7 @@ def _build_html(reason: str = "") -> str:
 
       <!-- 2. 爱发电 -->
       <div class="qr-card">
-        <img src="{qr_data['afdian']}" alt="爱发电">
+        <img src="{qr_data['afdian']}" alt="Afdian">
         <div class="qr-title">{QR_INFO['afdian']['title']}</div>
         <div class="qr-sub">{QR_INFO['afdian']['subtitle']}</div>
         <div class="qr-desc">{QR_INFO['afdian']['desc']}</div>
@@ -290,7 +288,7 @@ def _build_html(reason: str = "") -> str:
 
       <!-- 3. 个人付款码 -->
       <div class="qr-card">
-        <img src="{qr_data['personal_pay']}" alt="个人付款码">
+        <img src="{qr_data['personal_pay']}" alt="Personal Pay">
         <div class="qr-title">{QR_INFO['personal_pay']['title']}</div>
         <div class="qr-sub">{QR_INFO['personal_pay']['subtitle']}</div>
         <div class="qr-desc">{QR_INFO['personal_pay']['desc']}</div>
@@ -298,7 +296,7 @@ def _build_html(reason: str = "") -> str:
 
       <!-- 4. 商户付款码 -->
       <div class="qr-card">
-        <img src="{qr_data['merchant']}" alt="商户付款码">
+        <img src="{qr_data['merchant']}" alt="Merchant">
         <div class="qr-title">{QR_INFO['merchant']['title']}</div>
         <div class="qr-sub">{QR_INFO['merchant']['subtitle']}</div>
         <div class="qr-desc">{QR_INFO['merchant']['desc']}</div>
@@ -309,35 +307,35 @@ def _build_html(reason: str = "") -> str:
 
   <!-- 定价表 -->
   <div class="section">
-    <h2>普通会员定价</h2>
+    <h2>{t("payment.pricing_title")}</h2>
     <table>
       <thead>
-        <tr><th>订阅方式</th><th>价格</th><th>说明</th></tr>
+        <tr><th>{t("payment.column_subscription")}</th><th>{t("payment.column_price")}</th><th>{t("payment.column_desc")}</th></tr>
       </thead>
       <tbody>
         {pricing_rows}
       </tbody>
     </table>
     <div class="tip-box">
-      付费后请截图发送至微信公众号，或联系作者获取授权码。输入授权码后立即激活普通会员权限。
+      {t("payment.pricing_tip")}
     </div>
   </div>
 
   <!-- 操作按钮 -->
   <div class="section" style="text-align:center;">
     <div class="btn-row">
-      <a href="#" class="btn btn-primary" onclick="window.close();return false;">我已扫码付款</a>
-      <a href="#" class="btn btn-outline" onclick="window.close();return false;">稍后再说</a>
+      <a href="#" class="btn btn-primary" onclick="window.close();return false;">{t("payment.btn_paid")}</a>
+      <a href="#" class="btn btn-outline" onclick="window.close();return false;">{t("payment.btn_later")}</a>
     </div>
   </div>
 
   <!-- 底部 -->
   <div class="footer">
-    MC Skill V1 - MC 全生态智能适配工程师<br>
-    免费期 60 天 | 免费用户也可长期使用（每日有限次数）<br>
-    付费仅为解锁更高次数限制和进阶服务<br>
+    {t("payment.footer_title")}<br>
+    {t("payment.footer_info1")}<br>
+    {t("payment.footer_info2")}<br>
     <br>
-    生成时间: {now}
+    {t("payment.current_time")}: {now}
   </div>
 
 </div>
@@ -356,32 +354,27 @@ def show_payment_page(reason: str = "") -> bool:
         True 表示页面成功打开，False 表示失败
     """
     try:
-        # 确保输出目录存在
         _OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-        # 生成 HTML
         html = _build_html(reason)
 
-        # 保存 HTML 文件
         html_path = _OUTPUT_DIR / "payment_guide.html"
         html_path.write_text(html, encoding="utf-8")
 
-        # 在浏览器中打开
         url = html_path.resolve().as_uri()
         webbrowser.open(url)
 
         print(f"\n{'='*50}", flush=True)
-        print(f"  已打开付费引导页面", flush=True)
-        print(f"  页面路径: {html_path}", flush=True)
-        print(f"  浏览器应已自动打开，如未打开请手动访问上述路径", flush=True)
+        print(f"  {t('payment.opened')}", flush=True)
+        print(f"  {t('payment.page_path', path=str(html_path))}", flush=True)
+        print(f"  {t('payment.browser_not_opened')}", flush=True)
         print(f"{'='*50}", flush=True)
         return True
 
     except Exception as e:
-        print(f"[错误] 无法打开付费页面: {e}", flush=True)
+        print(f"[Error] {t('payment.open_failed')}: {e}", flush=True)
         return False
 
 
 if __name__ == "__main__":
-    # 测试：直接运行此模块预览页面
     show_payment_page(reason="测试预览 - 付费引导页面")

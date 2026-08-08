@@ -33,6 +33,8 @@ from datetime import datetime, timedelta, date
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from core.i18n import t
+
 logger = logging.getLogger(__name__)
 
 # === 付费全局开关 ===
@@ -54,12 +56,16 @@ TIER_FREE = "free"        # 免费用户
 TIER_NORMAL = "normal"    # 普通会员 8.88元/月
 TIER_PREMIUM = "premium"  # 高级会员（敬请期待，暂不开放）
 
-# === 会员等级显示名称 ===
-TIER_NAMES = {
-    TIER_FREE: "免费用户",
-    TIER_NORMAL: "普通会员",
-    TIER_PREMIUM: "高级会员（敬请期待）",
+# === 会员等级显示名称（通过 t() 动态获取翻译）===
+_TIER_NAME_KEYS = {
+    TIER_FREE: "auth.tier.free",
+    TIER_NORMAL: "auth.tier.member",
+    TIER_PREMIUM: "auth.tier.coming_soon",
 }
+
+def _get_tier_name(tier: str) -> str:
+    """根据等级获取本地化名称"""
+    return t(_TIER_NAME_KEYS.get(tier, "common.unknown"))
 
 # === 功能类型 ===
 FUNC_AUTO = "auto"        # 全自动功能（F2/F4/F7/F8等）
@@ -88,37 +94,37 @@ DAILY_LIMITS = {
 # === 普通会员定价 ===
 PRICING = {
     "monthly": {
-        "name": "单月包月",
+        "name": t("auth.pricing_monthly"),
         "price": 8.88,
         "unit": "元/月",
-        "desc": "单次付费，到期后需手动续费",
+        "desc": t("auth.pricing_desc_monthly"),
     },
     "monthly_auto": {
-        "name": "连续包月",
+        "name": t("auth.pricing_monthly_auto"),
         "price": 8.88,
         "unit": "元/月",
-        "desc": "自动续费，可随时取消",
+        "desc": t("auth.pricing_desc_monthly_auto"),
     },
     "quarterly": {
-        "name": "包季",
+        "name": t("auth.pricing_quarterly"),
         "price": 23.88,
         "unit": "元/季",
-        "desc": "3个月，相比月付省约2.76元",
+        "desc": t("auth.pricing_desc_quarterly"),
     },
     "yearly": {
-        "name": "包年",
+        "name": t("auth.pricing_yearly"),
         "price": 88.88,
         "unit": "元/年",
-        "desc": "12个月，相比月付省约17.68元",
+        "desc": t("auth.pricing_desc_yearly"),
     },
 }
 
 # === 单次按需定价 ===
 PAY_PER_USE = {
-    "migration_assess": {"name": "移植评估报告", "price": 9.9},
-    "shallow_adapt": {"name": "浅层适配", "price": 49.9},
-    "deep_diagnosis": {"name": "深度诊断", "price": 89.9},
-    "crash_fix": {"name": "崩溃修复", "price": 39.9},
+    "migration_assess": {"name": t("auth.per_use_migration_assess"), "price": 9.9},
+    "shallow_adapt": {"name": t("auth.per_use_shallow_adapt"), "price": 49.9},
+    "deep_diagnosis": {"name": t("auth.per_use_deep_diagnosis"), "price": 89.9},
+    "crash_fix": {"name": t("auth.per_use_crash_fix"), "price": 39.9},
 }
 
 # === 作者测试设备列表 (仅这些设备会显示完整付费信息) ===
@@ -311,7 +317,7 @@ def get_usage_stats() -> Dict[str, Any]:
     return {
         "machine_id": state.get("machine_id", ""),
         "tier": tier,
-        "tier_name": TIER_NAMES.get(tier, "未知"),
+        "tier_name": _get_tier_name(tier),
         "daily_usage": daily,
         "total_usage": total,
         "daily_limits": limits,
@@ -324,7 +330,7 @@ def get_usage_stats() -> Dict[str, Any]:
         "in_free_period": free_info["in_free_period"],
         "days_remaining": free_info["days_remaining"],
         "pricing": PRICING,
-        "premium_status": "敬请期待",
+        "premium_status": t("auth.tier.coming_soon"),
     }
 
 
@@ -354,7 +360,7 @@ def check_permission(feature: str, func_type: str = FUNC_AUTO) -> Dict[str, Any]
             "tier": state.get("tier", TIER_FREE),
             "remaining": -1,
             "limit": -1,
-            "reason": f"免费期间（剩余{free_info['days_remaining']}天），功能不限次数",
+            "reason": t("auth.free_period_remaining", days=free_info['days_remaining']),
         }
 
     # === 免费期过后：自动应用基础限制 ===
@@ -368,21 +374,20 @@ def check_permission(feature: str, func_type: str = FUNC_AUTO) -> Dict[str, Any]
     if used >= limit:
         # 构建提示信息
         if ENABLE_PAYMENT:
-            upgrade_hint = "升级普通会员可解锁更多次数（100次/天）"
-            # 免费期结束后，弹出付费引导页面
+            upgrade_hint = t("auth.upgrade_hint_enable", max=100)
             try:
                 from core.payment_page import show_payment_page
-                show_payment_page(reason=f"今日{feature}使用次数已达上限({limit}次)，升级普通会员可解锁100次/日")
+                show_payment_page(reason=f"{t('auth.limit_reached', used=limit, limit=limit)}, {t('auth.upgrade_hint_enable', max=100)}")
             except Exception:
                 pass
         else:
-            upgrade_hint = "免费用户每日限额已用完，付费机制将在正式开启后提供升级选项"
+            upgrade_hint = t("auth.upgrade_hint_disable")
         return {
             "allowed": False,
             "tier": tier,
             "remaining": 0,
             "limit": limit,
-            "reason": f"今日{feature}使用次数已达上限({limit}次)，{upgrade_hint}",
+            "reason": f"{t('auth.limit_reached', used=limit, limit=limit)}, {upgrade_hint}",
         }
 
     return {
@@ -419,18 +424,17 @@ def _check_migration_assess_permission(state: Dict[str, Any]) -> Dict[str, Any]:
                 "tier": tier,
                 "remaining": 1,
                 "limit": 1,
-                "reason": "首次使用免费（免费期内）",
+                "reason": t("auth.migration_assess_first_free"),
                 "is_first_use": True,
             }
         else:
-            # 非首次，每天1次
             if today_used >= 1:
                 return {
                     "allowed": False,
                     "tier": tier,
                     "remaining": 0,
                     "limit": 1,
-                    "reason": "免费期内每天仅可使用1次模组移植评估",
+                    "reason": t("auth.migration_assess_limit_reached", count=1),
                     "is_first_use": False,
                 }
             return {
@@ -438,7 +442,7 @@ def _check_migration_assess_permission(state: Dict[str, Any]) -> Dict[str, Any]:
                 "tier": tier,
                 "remaining": 1 - today_used,
                 "limit": 1,
-                "reason": "免费期内（每日1次）",
+                "reason": t("auth.migration_assess_daily_free", count=1),
                 "is_first_use": False,
             }
     else:
@@ -448,15 +452,15 @@ def _check_migration_assess_permission(state: Dict[str, Any]) -> Dict[str, Any]:
 
         if today_used >= limit:
             if ENABLE_PAYMENT:
-                upgrade_hint = "升级普通会员可使用5次/日"
+                upgrade_hint = t("auth.upgrade_hint_enable", max=5)
             else:
-                upgrade_hint = "付费机制将在正式开启后提供升级选项"
+                upgrade_hint = t("auth.upgrade_hint_disable")
             return {
                 "allowed": False,
                 "tier": tier,
                 "remaining": 0,
                 "limit": limit,
-                "reason": f"今日模组移植评估使用次数已达上限({limit}次)，{upgrade_hint}",
+                "reason": f"{t('auth.limit_reached', used=limit, limit=limit)}, {upgrade_hint}",
                 "is_first_use": not first_used,
             }
 
@@ -505,7 +509,7 @@ def activate_license(license_key: str, tier: str = TIER_NORMAL,
         return {
             "success": False,
             "tier": tier,
-            "message": "高级会员敬请期待，暂不开放购买",
+            "message": t("auth.premium_coming_soon"),
         }
 
     state = _load_auth_state()
@@ -524,7 +528,7 @@ def activate_license(license_key: str, tier: str = TIER_NORMAL,
         "license_key": license_key,
         "expires": expires,
         "subscription_type": subscription_type,
-        "message": f"已激活普通会员（{sub_name}），有效期至{expires}",
+        "message": t("auth.activate_success", tier=_get_tier_name(tier), subscription=sub_name, expires=expires),
     }
 
 
@@ -614,71 +618,56 @@ def print_auth_status() -> None:
     """打印当前授权状态"""
     stats = get_usage_stats()
     print("=" * 55, flush=True)
-    print("  MC 全生态智能适配工程师 - 授权状态", flush=True)
+    print(f"  {t('banner.title')} - {t('auth.title')}", flush=True)
     print("=" * 55, flush=True)
-    print(f"  机器码: {stats['machine_id']}", flush=True)
-    print(f"  会员等级: {stats['tier_name']}", flush=True)
-    print(f"  付费机制: {'已开启' if stats['payment_enabled'] else '未正式开启'}", flush=True)
-    print(f"  授权码: {stats['license_key'] or '未激活'}", flush=True)
-    print(f"  到期时间: {stats['license_expires'] or '—'}", flush=True)
+    print(f"  {t('auth.machine_id')}: {stats['machine_id']}", flush=True)
+    print(f"  {t('auth.member_tier')}: {stats['tier_name']}", flush=True)
+    print(f"  {t('auth.payment_methods')}: {'✅' if stats['payment_enabled'] else '⏳'}", flush=True)
+    print(f"  {t('auth.auth_code')}: {stats['license_key'] or t('auth.not_activated')}", flush=True)
+    print(f"  {t('auth.expiry_date')}: {stats['license_expires'] or '—'}", flush=True)
 
     # 免费期信息
     if stats["in_free_period"]:
         print(f"\n  ┌─────────────────────────────────", flush=True)
-        print(f"  │  免费期间（剩余 {stats['days_remaining']} 天）", flush=True)
-        print(f"  │  首次使用: {stats['first_use_date'] or '尚未使用'}", flush=True)
-        print(f"  │  免费期至: {stats['free_period_end'] or '—'}", flush=True)
-        print(f"  │", flush=True)
-        print(f"  │  除模组移植评估外，所有功能免费使用", flush=True)
-        print(f"  │  移植评估：首次免费，之后每天1次", flush=True)
-        print(f"  │", flush=True)
-        print(f"  │  免费期结束后将自动开启付费机制：", flush=True)
-        print(f"  │  免费用户每日20次，普通会员每日100次", flush=True)
+        print(f"  │  {t('auth.free_period')} ({t('auth.remaining')} {stats['days_remaining']} days)", flush=True)
+        print(f"  │  {t('auth.first_use_date')}: {stats['first_use_date'] or '—'}", flush=True)
+        print(f"  │  {t('auth.free_until')}: {stats['free_period_end'] or '—'}", flush=True)
         print(f"  └─────────────────────────────────", flush=True)
     else:
         print(f"\n  ┌─────────────────────────────────", flush=True)
-        print(f"  │  免费期已结束（{stats['free_period_end']}）", flush=True)
-        print(f"  │  已自动应用付费机制", flush=True)
-        print(f"  │", flush=True)
-        print(f"  │  当前等级: {stats['tier_name']}", flush=True)
-        if stats["tier"] == TIER_FREE:
-            print(f"  │  每日免费额度: {stats['daily_limits'].get('auto', 20)} 次", flush=True)
-            print(f"  │", flush=True)
-            print(f"  │  付费机制正式开启后，可升级普通会员", flush=True)
-            print(f"  │  享受每日100次额度，或按需付费", flush=True)
-        elif stats["payment_enabled"]:
-            print(f"  │  付费机制: 已开启", flush=True)
+        print(f"  │  {t('auth.free_period')}: {t('auth.expired')} ({stats['free_period_end']})", flush=True)
+        print(f"  │  {t('auth.tier.free')}: {stats['daily_limits'].get('auto', 20)}/day", flush=True)
         print(f"  └─────────────────────────────────", flush=True)
 
     # 使用统计
-    print(f"\n  今日使用:", flush=True)
+    print(f"\n  {t('auth.today_usage')}:", flush=True)
     for feat, count in stats["daily_usage"].items():
-        feat_name = {"migration_assess": "模组移植评估"}.get(feat, feat)
+        feat_name = {"migration_assess": t("feature.f9.name")}.get(feat, feat)
         limit = stats["daily_limits"].get(feat, stats["daily_limits"].get("auto", 20))
         if limit > 0:
-            print(f"    {feat_name}: {count}/{limit} 次", flush=True)
+            print(f"    {feat_name}: {count}/{limit}", flush=True)
         else:
-            print(f"    {feat_name}: {count} 次（无限）", flush=True)
+            print(f"    {feat_name}: {count} ({t('auth.unlimited')})", flush=True)
     if not stats["daily_usage"]:
-        print("    （今日暂无使用记录）", flush=True)
+        print(f"    ({t('common.no_data')})", flush=True)
 
-    print(f"\n  累计使用:", flush=True)
+    print(f"\n  {t('auth.total_usage')}:", flush=True)
     for feat, count in stats["total_usage"].items():
-        feat_name = {"migration_assess": "模组移植评估"}.get(feat, feat)
-        print(f"    {feat_name}: {count} 次", flush=True)
+        feat_name = {"migration_assess": t("feature.f9.name")}.get(feat, feat)
+        print(f"    {feat_name}: {count}", flush=True)
     if not stats["total_usage"]:
-        print("    （暂无使用记录）", flush=True)
+        print(f"    ({t('common.no_data')})", flush=True)
 
     # 定价信息
-    print(f"\n  普通会员订阅方式:", flush=True)
+    print(f"\n  {t('auth.member_subscription')}:", flush=True)
     for key, info in stats["pricing"].items():
         print(f"    {info['name']}: {info['price']}{info['unit']} ({info['desc']})", flush=True)
 
     # 单次按需付费：仅作者设备可见（V1阶段功能未实现，对普通用户隐藏）
     if _is_author_device():
-        print(f"\n  单次按需付费 (仅作者测试可见):", flush=True)
+        print(f"\n  {t('auth.per_use_payment')} {t('auth.author_test_only')}:", flush=True)
         for key, info in PAY_PER_USE.items():
-            print(f"    {info['name']}: {info['price']} 元/次", flush=True)
+            print(f"    {info['name']}: {info['price']} CNY/use", flush=True)
 
-    print(f"\n  高级会员: 敬请期待", flush=True)
+    print(f"\n  {t('auth.premium_coming_soon')}", flush=True)
     print("=" * 55, flush=True)

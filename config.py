@@ -196,6 +196,22 @@ DEFAULTS = {
     "device": "pc",
     "detail_level": "basic",
     "severity": "summary",
+    "ui_language": "en_us",
+}
+
+# === 支持的界面语言 ===
+SUPPORTED_LANGUAGES = {
+    "zh_cn": "简体中文",
+    "zh_tw": "繁體中文",
+    "en_us": "English",
+    "ja_jp": "日本語",
+    "ko_kr": "한국어",
+    "ru_ru": "Русский",
+    "es_es": "Español",
+    "it_it": "Italiano",
+    "el_gr": "Ελληνικά",
+    "th_th": "ภาษาไทย",
+    "hi_in": "हिन्दी",
 }
 
 # === 统一返回结构构造 ===

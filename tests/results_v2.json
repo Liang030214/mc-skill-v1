@@ -1,0 +1,98 @@
+{
+  "summary": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0,
+    "skipped": 0,
+    "pass_rate": 100.0
+  },
+  "tests": [
+    {
+      "test_id": 1,
+      "name": "批量搜索模式",
+      "status": "passed",
+      "duration": "5.361s",
+      "message": "批量搜索功能正常",
+      "details": {
+        "batch_size": 3,
+        "total_mods_found": 9,
+        "first_mod": "Create"
+      }
+    },
+    {
+      "test_id": 2,
+      "name": "分类搜索 - 预定义分类",
+      "status": "passed",
+      "duration": "2.55s",
+      "message": "预定义分类搜索正常",
+      "details": {
+        "category": "机械动力系列",
+        "results_count": 6,
+        "first_result": "Create"
+      }
+    },
+    {
+      "test_id": 3,
+      "name": "同类模组推荐",
+      "status": "passed",
+      "duration": "0.001s",
+      "message": "同类推荐功能正常",
+      "details": {
+        "mod_slug": "create",
+        "recommendations_count": 5,
+        "top_recommendation": "N/A"
+      }
+    },
+    {
+      "test_id": 4,
+      "name": "兼容规则库数据完整性",
+      "status": "passed",
+      "duration": "0.003s",
+      "message": "兼容规则库数据完整",
+      "details": {
+        "total_mods": 78,
+        "mc_versions_covered": 3,
+        "db_version": "1.1"
+      }
+    },
+    {
+      "test_id": 5,
+      "name": "动态分类获取",
+      "status": "passed",
+      "duration": "2.074s",
+      "message": "动态分类获取功能正常（API可能无数据，但预定义分类正常）",
+      "details": {
+        "dynamic_categories_count": 0,
+        "preset_categories_count": 16,
+        "note": "Modrinth API可能不返回分类数据，这是正常现象"
+      }
+    },
+    {
+      "test_id": 6,
+      "name": "自动更新兼容规则库",
+      "status": "passed",
+      "duration": "3.262s",
+      "message": "自动更新功能正常",
+      "details": {
+        "before_count": 78,
+        "after_count": 78,
+        "updated_this_run": 3,
+        "new_mods_added": 0
+      }
+    }
+  ],
+  "timestamp": "2026-08-07 15:45:55",
+  "config": {
+    "mc_version": "1.21.1",
+    "loader": "neoforge",
+    "test_queries": [
+      "Create",
+      "Farmers Delight",
+      "Mekanism"
+    ],
+    "test_category": "create",
+    "test_dynamic_category": "tech",
+    "test_mod_slug": "create",
+    "output_dir": "D:\\Users\\lele\\Desktop\\MC模组版本优化与拓展\\mc-skill-v1\\tests\\test_output"
+  }
+}

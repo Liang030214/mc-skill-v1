@@ -20,6 +20,8 @@ from typing import Any, Dict, List, Optional, Tuple
 from urllib.error import URLError
 from urllib.request import Request, urlopen
 
+from core.i18n import t
+
 logger = logging.getLogger(__name__)
 
 
@@ -171,16 +173,16 @@ def auto_fix_mods(
 
     # 处理确认
     if not auto_confirm:
-        print(f"\n⚠️  将升级以下 {len(need_upgrade)} 个模组:", flush=True)
+        print(t("autofix.will_upgrade", count=len(need_upgrade)), flush=True)
         for rec in need_upgrade:
             mod_id = rec.get("mod_id", "?")
             current = rec.get("current_version", "?")
             recommended = rec.get("recommended_version", "?")
             status = rec.get("status", "?")
-            print(f"  {mod_id}: {current} → {recommended} [{status}]", flush=True)
+            print(t("autofix.mod_upgrade_info", mod=mod_id, current=current, recommended=recommended, status=status), flush=True)
 
         try:
-            confirm = input("\n确认执行自动修复？(y/N): ").strip().lower()
+            confirm = input(t("autofix.confirm_prompt")).strip().lower()
         except (EOFError, KeyboardInterrupt):
             confirm = "n"
 

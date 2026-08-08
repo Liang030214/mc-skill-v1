@@ -34,6 +34,7 @@ if str(_PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(_PROJECT_ROOT))
 
 import config
+from core.i18n import t
 from utils.logger import get_logger
 from utils.jar_utils import extract_jar, create_temp_dir, cleanup_temp_dir, parse_toml, read_jar_file
 from utils.report_gen import ReportGenerator, generate_unified_output
@@ -585,7 +586,7 @@ def run(args) -> int:
     Returns:
         退出码 0=成功 1=失败
     """
-    print(f"[F9] 模组移植可行性评估...", flush=True)
+    print(t("migration.assess_title"), flush=True)
     
     # === 参数校验 ===
     jar_path = getattr(args, "jar_path", "")
@@ -596,28 +597,28 @@ def run(args) -> int:
     output_dir = getattr(args, "output", None) or str(config.REPORTS_DIR)
     
     if not jar_path or not Path(jar_path).exists():
-        print(f"错误: JAR 文件路径无效", flush=True)
+        print(t("error.invalid_jar"), flush=True)
         return 1
     if not from_mc or not to_mc:
-        print(f"错误: 必须指定源和目标MC版本", flush=True)
+        print(t("error.missing_mc_versions"), flush=True)
         return 1
     if not from_loader or not to_loader:
-        print(f"错误: 必须指定源和目标加载器", flush=True)
+        print(t("error.missing_loaders"), flush=True)
         return 1
     
-    print(f"  模组: {jar_path}", flush=True)
-    print(f"  迁移: {from_mc} ({from_loader}) → {to_mc} ({to_loader})", flush=True)
+    print(t("migration.jar_info", path=jar_path), flush=True)
+    print(t("migration.migration_info", from_mc=from_mc, from_loader=from_loader, to_mc=to_mc, to_loader=to_loader), flush=True)
     
     # === 1. 解析模组元数据 ===
-    print(f"\n[1/5] 解析模组元数据...", flush=True)
+    print("\n" + t("migration.parsing_metadata"), flush=True)
     metadata = _parse_mod_metadata(jar_path)
-    print(f"  模组ID: {metadata['mod_id']}", flush=True)
-    print(f"  模组名: {metadata['mod_name']}", flush=True)
-    print(f"  版本: {metadata['mod_version']}", flush=True)
-    print(f"  依赖: {len(metadata['dependencies'])} 个", flush=True)
+    print(t("migration.mod_id", id=metadata['mod_id']), flush=True)
+    print(t("migration.mod_name", name=metadata['mod_name']), flush=True)
+    print(t("migration.mod_version", version=metadata['mod_version']), flush=True)
+    print(t("migration.dependency_count", count=len(metadata['dependencies'])), flush=True)
     
     # === 2. 分析加载器迁移兼容性 ===
-    print(f"\n[2/5] 分析加载器迁移兼容性...", flush=True)
+    print("\n" + t("migration.analyzing_loader"), flush=True)
     loader_key = (from_loader, to_loader)
     loader_info = LOADER_MIGRATION_MAP.get(loader_key, {
         "level": "unknown",
@@ -626,46 +627,46 @@ def run(args) -> int:
         "key_changes": ["未知迁移路径，需手动评估"],
         "estimated_effort": "未知",
     })
-    print(f"  兼容性等级: {loader_info['level']}", flush=True)
-    print(f"  关键变更点: {len(loader_info.get('key_changes', []))} 项", flush=True)
+    print(t("migration.compat_level", level=loader_info['level']), flush=True)
+    print(t("migration.key_changes", count=len(loader_info.get('key_changes', []))), flush=True)
     
     # === 3. 分析 MC 版本兼容性 ===
-    print(f"\n[3/5] 分析MC版本兼容性...", flush=True)
+    print("\n" + t("migration.analyzing_mc"), flush=True)
     version_key = (from_mc, to_mc)
     mc_info = MC_VERSION_COMPATIBILITY.get(version_key, {
         "api_stability": "unknown",
         "common_changes": ["版本兼容性信息未知，建议手动测试"],
     })
-    print(f"  API稳定性: {mc_info.get('api_stability', 'unknown')}", flush=True)
+    print(t("migration.api_stability", stability=mc_info.get('api_stability', 'unknown')), flush=True)
     
     # === 4. 分析依赖兼容性 ===
-    print(f"\n[4/5] 分析依赖兼容性...", flush=True)
+    print("\n" + t("migration.analyzing_deps"), flush=True)
     dep_analysis = _analyze_dependencies(
         metadata["mod_id"], from_mc, to_mc,
         from_loader, to_loader, metadata["dependencies"]
     )
-    print(f"  本地检查: {len(dep_analysis['deps_checked'])} 个依赖", flush=True)
-    print(f"  需要联网查询: {len(dep_analysis['online_checks'])} 个", flush=True)
+    print(t("migration.local_check", count=len(dep_analysis['deps_checked'])), flush=True)
+    print(t("migration.online_check", count=len(dep_analysis['online_checks'])), flush=True)
     
     # 联网查询
     online_results = []
     if dep_analysis["online_checks"]:
-        print(f"  正在联网查询...", flush=True)
+        print(t("migration.querying_online"), flush=True)
         online_results = _online_check_dependencies(
             dep_analysis["online_checks"], to_mc, to_loader
         )
         found = sum(1 for r in online_results if r["status"] == "found")
-        print(f"  联网查询: {len(online_results)} 个，找到 {found} 个", flush=True)
+        print(t("migration.online_result", total=len(online_results), found=found), flush=True)
     
     # === 5. 分析 Mixin 配置 ===
-    print(f"\n[5/5] 分析 Mixin 配置...", flush=True)
+    print("\n" + t("migration.analyzing_mixin"), flush=True)
     mixin_analysis = _analyze_mixin_configs(jar_path)
     total_mixins = sum(m["count"] for m in mixin_analysis)
-    print(f"  Mixin 配置: {len(mixin_analysis)} 个", flush=True)
-    print(f"  注入点总数: {total_mixins}", flush=True)
+    print(t("migration.mixin_config", count=len(mixin_analysis)), flush=True)
+    print(t("migration.mixin_injections", count=total_mixins), flush=True)
     
     # === 6. 计算可行性评分 ===
-    print(f"\n计算可行性评分...", flush=True)
+    print("\n" + t("migration.calculating_score"), flush=True)
     loader_score = loader_info.get("score", 50)
     version_score = 70 if mc_info.get("api_stability") == "high" else \
                     50 if mc_info.get("api_stability") == "medium" else \
@@ -677,11 +678,11 @@ def run(args) -> int:
     score, risk_level, risk_desc = _calculate_feasibility_score(
         loader_score, version_score, dep_compat, mixin_complexity
     )
-    print(f"  总分: {score}/100", flush=True)
-    print(f"  风险等级: {risk_level} - {risk_desc}", flush=True)
+    print(t("migration.total_score", score=score), flush=True)
+    print(t("migration.risk_level_display", level=risk_level, desc=risk_desc), flush=True)
     
     # === 7. 生成报告 ===
-    print(f"\n生成评估报告...", flush=True)
+    print("\n" + t("migration.generating_report"), flush=True)
     report = _generate_assessment_report(
         metadata, loader_info, mc_info,
         dep_analysis, online_results, mixin_analysis,
@@ -699,31 +700,31 @@ def run(args) -> int:
     json_path = report_path / f"migration_assessment_{safe_mod_id}_{timestamp}.json"
     with open(json_path, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
-    print(f"  JSON 报告: {json_path}", flush=True)
+    print(t("migration.json_report", path=json_path), flush=True)
     
     # 生成 HTML 报告
     html_path = report_path / f"migration_assessment_{safe_mod_id}_{timestamp}.html"
     html_content = _generate_html_report(report)
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(html_content)
-    print(f"  HTML 报告: {html_path}", flush=True)
+    print(t("migration.html_report", path=html_path), flush=True)
     
     # === 8. 输出摘要 ===
     print(f"\n{'='*60}", flush=True)
-    print(f"模组移植可行性评估完成", flush=True)
+    print(t("migration.completed"), flush=True)
     print(f"{'='*60}", flush=True)
-    print(f"  模组: {metadata['mod_name']} ({metadata['mod_id']})", flush=True)
-    print(f"  迁移: {from_mc} ({from_loader}) → {to_mc} ({to_loader})", flush=True)
-    print(f"  可行性评分: {score}/100 ({risk_desc})", flush=True)
-    print(f"  依赖兼容率: {dep_compat:.0f}%", flush=True)
-    print(f"  Mixin注入点: {total_mixins} 个", flush=True)
+    print(t("migration.jar_info", path=f"{metadata['mod_name']} ({metadata['mod_id']})"), flush=True)
+    print(t("migration.migration_info", from_mc=from_mc, from_loader=from_loader, to_mc=to_mc, to_loader=to_loader), flush=True)
+    print(t("migration.score_display", score=score, desc=risk_desc), flush=True)
+    print(t("migration.dep_compat", rate=f"{dep_compat:.0f}"), flush=True)
+    print(t("migration.mixin_count", count=total_mixins), flush=True)
     
     if report["suggestions"]:
-        print(f"\n  迁移建议:", flush=True)
+        print("\n" + t("migration.suggestions"), flush=True)
         for suggestion in report["suggestions"]:
             print(f"    {suggestion}", flush=True)
     
-    print(f"\n  报告已保存至:", flush=True)
+    print("\n" + t("migration.report_saved_path"), flush=True)
     print(f"    {json_path}", flush=True)
     print(f"    {html_path}", flush=True)
     
