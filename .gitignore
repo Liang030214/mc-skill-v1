@@ -37,6 +37,9 @@ verify_*.py
 _expand_db.py
 _exe_entry.py
 
+# 发布包临时目录
+release/github_package_*/
+
 # 用户数据（不上传）
 data/auth_state.json
 data/payment/*.png
