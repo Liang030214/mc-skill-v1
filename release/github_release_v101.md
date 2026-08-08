@@ -14,7 +14,7 @@
 - 📚 **兼容规则库扩充**: 模组版本推荐数据库从35+扩充至65+，覆盖机械动力、乐事、科技能源、红石魔改等热门模组
 - 🌐 **国际化支持**: 新增11种语言（英语、简体/繁体中文、日语、韩语、俄语、西班牙语、意大利语、希腊语、泰语、印地语），支持智能检测自动切换
 - 🔐 **权限声明完善**: 新增 SKILL.json 元数据文件，完整声明12个功能的权限需求与数据收集策略
-- 🐛 **Bug修复**: 修复 F2 模组检索、F3 环境搭建、F5 资源重打包、F8.1 自动修复等多处已知问题
+- 🐛 **Bug修复**: 修复模组检索、环境搭建、资源重打包、自动修复等多处已知问题
 
 ### English
 
@@ -22,7 +22,7 @@
 - 📚 **Expanded Compatibility Library**: Mod recommendation database expanded from 35+ to 65+ mods, covering Create, Fun series, Tech & Energy, Redstone & Automation, and more
 - 🌐 **Multi-language Support**: 11 languages (EN, ZH-CN, ZH-TW, JA, KO, RU, ES, IT, EL, TH, HI) with auto-detection via IP geolocation → system locale → English fallback
 - 🔐 **Complete Permission Declaration**: New SKILL.json with full declaration of 12 features' permission requirements and data collection policies
-- 🐛 **Bug Fixes**: Fixed issues in F2 mod search, F3 environment setup, F5 resource repacking, F8.1 auto-fix, and more
+- 🐛 **Bug Fixes**: Fixed issues in mod search, environment setup, resource repacking, auto-fix, and more
 
 ---
 
@@ -64,10 +64,10 @@
 
 #### 新增功能 / New Features
 
-- **F9 Migration Feasibility Assessment**: Analyzes mod portability across environments with 5 dimensions (loader migration, MC version, dependency, Mixin injection, feasibility scoring 0-100). Outputs JSON and HTML reports.
-- **F8.1 Auto Fix**: One-click mod version upgrade with automatic JAR backup and rollback. Real-time version recommendations via Modrinth API.
+- **模组移植可行性评估 (Migration Feasibility Assessment)**: 分析模组跨环境移植的可行性，包含5个维度（加载器迁移、MC版本、依赖、Mixin注入、可行性评分0-100）。输出JSON和HTML报告。
+- **自动修复 (Auto Fix)**: 一键将模组升级到推荐版本，自动备份JAR文件并支持回滚。通过Modrinth API获取实时版本推荐。
 
-#### F2 模组检索增强 / F2 Mod Search Enhancement
+#### 模组检索增强 / Mod Search Enhancement
 
 - **Batch Search**: Search multiple keywords at once for bulk downloads
 - **Category Search**: 17 preset categories (create/fun/tech/redstone/magic/storage/adventure/survival/decoration/mobs/equipment/food/worldgen/gameplay/performance/utility) + dynamic categories from Modrinth API
@@ -95,12 +95,12 @@ Database expanded from 35+ to **65+ mods**:
 
 #### 修复与改进 / Fixes & Improvements
 
-- Optimized crash log regex matching precision
-- Improved Modrinth API error handling and retry mechanisms
-- Enhanced Mixin injection point analysis accuracy
-- Optimized multi-language file loading performance
-- Improved interactive menu user experience
-- Enhanced auto-fix backup and rollback mechanisms
+- 优化崩溃日志解析的正则匹配精度 / Optimized crash log regex matching precision
+- 改进模组搜索API的错误处理与重试机制 / Improved Modrinth API error handling and retry mechanisms
+- 增强Mixin注入点分析的准确性 / Enhanced Mixin injection point analysis accuracy
+- 优化多语言文件的加载性能 / Optimized multi-language file loading performance
+- 改进交互式菜单的用户体验 / Improved interactive menu user experience
+- 增强自动修复的备份与回滚机制 / Enhanced auto-fix backup and rollback mechanisms
 
 ---
 
