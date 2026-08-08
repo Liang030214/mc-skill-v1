@@ -80,37 +80,7 @@ git remote -v
 1. 访问: `https://github.com/Liang030214/mc-skill-v1/releases/new?tag=v1.0.1`
 2. **Tag version**: 选择 `v1.0.1`
 3. **Release title**: `MC Ecosystem Adaptation Engineer V1.0.1`
-4. **Description**:
-
-```markdown
-## 🎮 MC Ecosystem Adaptation Engineer V1.0.1
-
-### 版本亮点
-- 🔍 **模组检索增强**: 新增16个模组分类索引，支持分类搜索和批量搜索
-- 📚 **兼容规则库扩充**: 覆盖机械动力、乐事、科技能源、红石魔改等65+模组
-- 🌐 **国际化支持**: 新增11种语言框架
-- 🔐 **权限声明完善**: 新增SKILL.json元数据文件，完整声明功能与权限
-- 🐛 **Bug修复**: 修复F2/F3/F5/F8.1等多处已知问题
-
-### 系统要求
-- Java 17+
-- Python 3.8+
-- Windows / macOS / Linux
-
-### 支持的加载器
-- NeoForge
-- Forge
-- Fabric
-- Quilt
-
-### 支持的MC版本
-- 1.20.1 - 1.21.1
-
-### 安装说明
-1. 解压 ZIP 到任意目录
-2. 运行 `start.bat` 启动
-3. 或通过命令行: `python main.py --help`
-```
+4. **Description**: 复制 `release/github_release_v101.md` 文件的完整内容
 
 5. 上传 `mc-skill-v1.0.1.zip` 二进制文件
 6. 点击 **"Publish release"**
