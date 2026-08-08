@@ -79,11 +79,11 @@ git remote -v
 
 1. 访问: `https://github.com/Liang030214/mc-skill-v1/releases/new?tag=v1.0.1`
 2. **Tag version**: 选择 `v1.0.1`
-3. **Release title**: `MC Skill V1.0.1 正式版本`
+3. **Release title**: `MC Ecosystem Adaptation Engineer V1.0.1`
 4. **Description**:
 
 ```markdown
-## 🎮 MC Skill V1.0.1 正式版本
+## 🎮 MC Ecosystem Adaptation Engineer V1.0.1
 
 ### 版本亮点
 - 🔍 **模组检索增强**: 新增16个模组分类索引，支持分类搜索和批量搜索
@@ -120,7 +120,7 @@ git remote -v
 ```bash
 # 创建 Release（需要 GitHub CLI）
 gh release create v1.0.1 ^
-  --title "MC Skill V1.0.1 正式版本" ^
+  --title "MC Ecosystem Adaptation Engineer V1.0.1" ^
   --notes "模组检索增强、兼容规则库扩充、国际化支持、权限声明完善" ^
   release/mc-skill-v1.0.1.zip
 ```

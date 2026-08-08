@@ -133,7 +133,7 @@ echo   下一步操作：
 echo   1. 打开 GitHub Release 页面
 echo   2. 点击 "Draft a new release"
 echo   3. 选择 v1.0.1 标签
-echo   4. Release Title 填写: MC Skill V1.0.1 正式版本
+echo   4. Release Title 填写: MC Ecosystem Adaptation Engineer V1.0.1
 echo   5. Release Description 可复制 release/changelog_v1.md 内容
 echo   6. 上传发布包 (release/mc-skill-v1.0.1.zip)
 echo   7. 点击 "Publish release"
