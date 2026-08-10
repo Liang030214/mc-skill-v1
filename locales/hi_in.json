@@ -4,7 +4,6 @@
   "banner.version": "V1",
   "banner.features": "सुविधाएं: JAR विश्लेषण · मॉड खोज · वातावरण सेटअप · Mixin स्कैन · रीपैक · सेव सिंक · अनुवाद · त्रुटि सुधार · ऑटो सुधार · माइग्रेशन मूल्यांकन",
   "banner.tagline": "Minecraft इकोसिस्टम के लिए स्मार्ट मॉड अनुकूलन",
-
   "feature.f1.name": "F1 JAR संरचना विश्लेषण",
   "feature.f1.desc": "JAR फ़ाइल संरचना का विश्लेषण करता है, मॉड मेटाडेटा और क्लास जानकारी निकालता है",
   "feature.f2.name": "F2 मॉड खोज और डाउनलोड",
@@ -25,7 +24,6 @@
   "feature.f8_1.desc": "सामान्य मॉड संगतता मुद्दों को स्वचालित रूप से सुधारता है",
   "feature.f9.name": "F9 माइग्रेशन व्यवहार्यता मूल्यांकन",
   "feature.f9.desc": "लोडर्स और MC संस्करणों के बीच मॉड माइग्रेशन की व्यवहार्यता का मूल्यांकन करता है",
-
   "common.success": "सफल",
   "common.failed": "विफल",
   "common.error": "त्रुटि",
@@ -66,7 +64,6 @@
   "common.deprecated": "अप्रचलित",
   "common.beta": "बीटा",
   "common.experimental": "प्रायोगिक",
-
   "error.missing_feature": "त्रुटि: --feature या --config पैरामीटर आवश्यक है",
   "error.module_not_found": "मॉड्यूल पथ {path} मौजूद नहीं है",
   "error.feature_not_implemented": "[सूचना] सुविधा {feature} अभी तक लागू नहीं की गई है",
@@ -90,7 +87,6 @@
   "error.invalid_jar": "त्रुटि: अमान्य JAR फ़ाइल पथ",
   "error.missing_mc_versions": "त्रुटि: स्रोत और लक्ष्य MC संस्करण आवश्यक हैं",
   "error.missing_loaders": "त्रुटि: स्रोत और लक्ष्य लोडर आवश्यक हैं",
-
   "not_implemented.title": "सुविधा लागू नहीं की गई",
   "not_implemented.message": "सुविधा {name} अभी तक लागू नहीं की गई है।",
   "not_implemented.module_path": "मॉड्यूल पथ: {module}",
@@ -103,7 +99,6 @@
   "not_implemented.p6": "P6: F6 सेव सिंक",
   "not_implemented.reference": "तकनीकी विशेषताओं के लिए V1 विकास गाइड देखें",
   "not_implemented.error_report": "सुविधा निष्पादन के दौरान त्रुटि हुई",
-
   "auth.title": "लाइसेंस स्थिति",
   "auth.member_tier": "सदस्य स्तर",
   "auth.auth_code": "प्राधिकरण कोड",
@@ -171,7 +166,6 @@
   "auth.activate_success": "{tier} ({subscription}) सक्रिय, {expires} को समाप्त",
   "auth.migration_assess_daily_free": "मुफ़्त अवधि ({count}/दिन)",
   "auth.migration_assess_limit_reached": "मुफ़्त अवधि में प्रति दिन केवल {count} माइग्रेशन मूल्यांकन",
-
   "payment.title": "सदस्य बनें",
   "payment.header_title": "MC इकोसिस्टम अनुकूलन इंजीनियर",
   "payment.header_subtitle": "अधिक उपयोग और उन्नत सुविधाएं अनलॉक करने के लिए अपग्रेड करें",
@@ -223,7 +217,6 @@
   "payment.page_path": "पेज पथ: {path}",
   "payment.browser_not_opened": "हो सकता है ब्राउज़र स्वचालित रूप से न खुला हो। कृपया उपरोक्त पथ पर मैनुअली जाएं।",
   "payment.open_failed": "भुगतान पेज खोलने में असमर्थ",
-
   "migration.step1": "[1/5] मॉड मेटाडेटा का विश्लेषण",
   "migration.step2": "[2/5] लोडर माइग्रेशन संगतता का विश्लेषण",
   "migration.step3": "[3/5] MC संस्करण संगतता का विश्लेषण",
@@ -241,7 +234,6 @@
   "migration.version_compat": "MC संस्करण संगतता",
   "migration.dependency_check": "निर्भरता संगतता",
   "migration.mixin_analysis": "Mixin इंजेक्शन विश्लेषण",
-
   "migration.assess_title": "F9 माइग्रेशन व्यवहार्यता मूल्यांकन",
   "migration.jar_info": "मॉड: {path}",
   "migration.migration_info": "माइग्रेशन: {from_mc} ({from_loader}) → {to_mc} ({to_loader})",
@@ -275,7 +267,6 @@
   "migration.mixin_count": "Mixin इंजेक्शन पॉइंट: {count}",
   "migration.suggestions": "माइग्रेशन सुझाव:",
   "migration.report_saved_path": "रिपोर्ट सहेजी गई:",
-
   "help.feature": "निष्पादित करने के लिए सुविधा चुनें (F1-F9)",
   "help.config": "JSON कॉन्फ़िग फ़ाइल पथ (बैच मोड)",
   "help.output": "आउटपुट फ़ाइल पथ",
@@ -311,13 +302,11 @@
   "help.reset_free_period": "मुफ़्त अवधि रीसेट करें (डिबगिंग के लिए)",
   "help.download": "JAR फ़ाइल स्वचालित रूप से डाउनलोड करें",
   "help.severity": "रिपोर्ट विवरण स्तर (summary/full)",
-
   "lang.set_success": "भाषा सेट की गई: {lang}",
   "lang.set_failed": "असमर्थित भाषा: {lang}",
   "lang.available": "उपलब्ध भाषाएं:",
   "lang.current": "वर्तमान भाषा: {lang}",
   "lang.detected": "{source} से भाषा का पता चला: {lang}",
-
   "examples.title": "उदाहरण:",
   "examples.cmd": "  # कमांड-लाइन मोड",
   "examples.cmd_example": "  python main.py --feature jar_parser --jar-path \"D:\\mods\\create.jar\"",
@@ -326,7 +315,6 @@
   "examples.lang": "  # भाषा बदलें",
   "examples.lang_example": "  python main.py --lang en_us",
   "examples.features_title": "उपलब्ध सुविधाएं:",
-
   "steps.preparing": "वातावरण तैयार किया जा रहा है...",
   "steps.loading": "संसाधन लोड किए जा रहे हैं...",
   "steps.processing": "प्रसंस्करण हो रहा है...",
@@ -339,26 +327,22 @@
   "steps.saving": "सहेजा जा रहा है...",
   "steps.complete": "पूर्ण!",
   "steps.failed": "विफल!",
-
   "result.success": "ऑपरेशन सफलतापूर्वक पूरा हुआ",
   "result.failed": "ऑपरेशन विफल: {reason}",
   "result.partial": "चेतावनियों के साथ पूरा: {count} मुद्दे मिले",
   "result.report_saved": "रिपोर्ट सहेजी गई: {path}",
   "result.output_saved": "आउटपुट सहेजा गया: {path}",
-
   "warning.deprecated": "यह सुविधा अप्रचलित है",
   "warning.limited": "उपयोग सीमित है",
   "warning.beta": "यह एक बीटा सुविधा है",
   "warning.experimental": "यह एक प्रायोगिक सुविधा है",
   "warning.config_recommended": "बैच ऑपरेशन के लिए कॉन्फ़िग फ़ाइल का उपयोग करने की अनुशंसा की जाती है",
-
   "prompt.confirm_continue": "जारी रखें?",
   "prompt.confirm_overwrite": "मौजूदा फ़ाइलें ओवरराइट करें?",
   "prompt.confirm_delete": "चयनित आइटम हटाएं?",
   "prompt.confirm_exit": "सहेजे बिना बाहर निकलें?",
   "prompt.input_required": "इनपुट आवश्यक है",
   "prompt.try_again": "कृपया पुनः प्रयास करें",
-
   "format.date": "%Y-%m-%d",
   "format.datetime": "%Y-%m-%d %H:%M:%S",
   "format.file_size_bytes": "{size} B",
@@ -371,8 +355,16 @@
   "format.seconds": "{value}s",
   "format.minutes": "{value}m",
   "format.hours": "{value}h",
-
   "autofix.will_upgrade": "निम्नलिखित {count} मॉड अपग्रेड किए जाएंगे:",
   "autofix.mod_upgrade_info": "{mod}: {current} → {recommended} [{status}]",
-  "autofix.confirm_prompt": "ऑटो-फिक्स की पुष्टि करें? (y/N):"
+  "autofix.confirm_prompt": "ऑटो-फिक्स की पुष्टि करें? (y/N):",
+  "payment.coming_soon_title": "भुगतान जल्द आ रहा है",
+  "payment.coming_soon_subtitle": "भुगतान सदस्यता सुविधा विकास में है। जल्द उपलब्ध!",
+  "payment.coming_soon_notice": "भुगतान सुविधा जल्द आ रही है। अधिक सुविधा अनलॉक की प्रतीक्षा करें!",
+  "payment.whats_included": "सदस्य लाभ पूर्वावलोकन",
+  "payment.feature_unlimited": "सभी सुविधाओं तक असीमित पहुंच",
+  "payment.feature_priority": "नए संस्करणों और सुविधाओं तक जल्द पहुंच",
+  "payment.feature_exclusive": "प्राथमिकता ग्राहक सहायता",
+  "payment.feature_support": "निरंतर विकास का समर्थन करें",
+  "payment.btn_close": "समझा"
 }

@@ -4,7 +4,6 @@
   "banner.version": "V1",
   "banner.features": "功能: JAR解析 · 模組檢索 · 環境搭建 · Mixin掃描 · 資源打包 · 存檔同步 · 漢化 · 報錯修復 · 自動修復 · 移植評估",
   "banner.tagline": "智慧模組適配，打造 Minecraft 生態",
-
   "feature.f1.name": "F1 JAR結構解析",
   "feature.f1.desc": "分析JAR文件結構，提取模組元資料與類別資訊",
   "feature.f2.name": "F2 模組檢索下載",
@@ -25,7 +24,6 @@
   "feature.f8_1.desc": "自動修復常見的模組相容性問題",
   "feature.f9.name": "F9 模組移植可行性評估",
   "feature.f9.desc": "評估模組在載入器與 MC 版本間移植的可行性",
-
   "common.success": "成功",
   "common.failed": "失敗",
   "common.error": "錯誤",
@@ -66,7 +64,6 @@
   "common.deprecated": "已棄用",
   "common.beta": "測試版",
   "common.experimental": "實驗性",
-
   "error.missing_feature": "錯誤: 必須指定 --feature 或 --config 參數",
   "error.module_not_found": "模組路徑 {path} 不存在",
   "error.feature_not_implemented": "[提示] 功能 {feature} 尚未實作",
@@ -90,7 +87,6 @@
   "error.invalid_jar": "錯誤: JAR 檔案路徑無效",
   "error.missing_mc_versions": "錯誤: 必須提供來源與目標 MC 版本",
   "error.missing_loaders": "錯誤: 必須提供來源與目標載入器",
-
   "not_implemented.title": "功能尚未實作",
   "not_implemented.message": "功能 {name} 尚未實作。",
   "not_implemented.module_path": "模組路徑: {module}",
@@ -103,7 +99,6 @@
   "not_implemented.p6": "P6: F6 存檔同步",
   "not_implemented.reference": "請參閱 V1 開發指南以了解技術規格",
   "not_implemented.error_report": "功能執行過程中發生錯誤",
-
   "auth.title": "授權狀態",
   "auth.member_tier": "會員等級",
   "auth.auth_code": "授權碼",
@@ -171,7 +166,6 @@
   "auth.activate_success": "{tier}（{subscription}）已啟用，到期時間 {expires}",
   "auth.migration_assess_daily_free": "免費期（{count} 次/天）",
   "auth.migration_assess_limit_reached": "免費期內每日僅限 {count} 次移植評估",
-
   "payment.title": "升級為會員",
   "payment.header_title": "MC全生態智能適配工程師",
   "payment.header_subtitle": "升級以解鎖更多使用次數與進階功能",
@@ -223,7 +217,6 @@
   "payment.page_path": "頁面路徑：{path}",
   "payment.browser_not_opened": "瀏覽器可能未自動開啟，請手動造訪上述路徑",
   "payment.open_failed": "無法開啟付費頁面",
-
   "migration.step1": "[1/5] 解析模組元資料",
   "migration.step2": "[2/5] 分析載入器遷移相容性",
   "migration.step3": "[3/5] 分析MC版本相容性",
@@ -241,7 +234,6 @@
   "migration.version_compat": "MC版本相容性",
   "migration.dependency_check": "依賴相容性",
   "migration.mixin_analysis": "Mixin注入分析",
-
   "migration.assess_title": "F9 模組移植可行性評估",
   "migration.jar_info": "模組: {path}",
   "migration.migration_info": "移植: {from_mc}（{from_loader}）→ {to_mc}（{to_loader}）",
@@ -275,7 +267,6 @@
   "migration.mixin_count": "Mixin注入點數: {count}",
   "migration.suggestions": "移植建議:",
   "migration.report_saved_path": "報告儲存至:",
-
   "help.feature": "選擇要執行的功能 (F1-F9)",
   "help.config": "JSON設定檔路徑（批次模式）",
   "help.output": "輸出目錄，預設: {default}",
@@ -311,13 +302,11 @@
   "help.reset_free_period": "重置免費期（除錯用）",
   "help.download": "自動下載 JAR 檔",
   "help.severity": "報告詳細程度（summary/full）",
-
   "lang.set_success": "語言已設定為: {lang}",
   "lang.set_failed": "不支援的語言: {lang}",
   "lang.available": "支援的語言:",
   "lang.current": "目前語言: {lang}",
   "lang.detected": "從 {source} 偵測到語言: {lang}",
-
   "examples.title": "範例:",
   "examples.cmd": "  # 命令列模式",
   "examples.cmd_example": "  python main.py --feature jar_parser --jar-path \"D:\\mods\\create.jar\"",
@@ -326,7 +315,6 @@
   "examples.lang": "  # 切換語言",
   "examples.lang_example": "  python main.py --lang en_us",
   "examples.features_title": "可用功能:",
-
   "steps.preparing": "正在準備環境...",
   "steps.loading": "正在載入資源...",
   "steps.processing": "處理中...",
@@ -339,26 +327,22 @@
   "steps.saving": "儲存中...",
   "steps.complete": "完成！",
   "steps.failed": "失敗！",
-
   "result.success": "操作成功完成",
   "result.failed": "操作失敗: {reason}",
   "result.partial": "完成但有警告: 發現 {count} 個問題",
   "result.report_saved": "報告已儲存至: {path}",
   "result.output_saved": "輸出已儲存至: {path}",
-
   "warning.deprecated": "此功能已棄用",
   "warning.limited": "使用受限",
   "warning.beta": "此為測試版功能",
   "warning.experimental": "此為實驗性功能",
   "warning.config_recommended": "建議使用設定檔進行批次操作",
-
   "prompt.confirm_continue": "繼續嗎？",
   "prompt.confirm_overwrite": "覆蓋現有檔案嗎？",
   "prompt.confirm_delete": "刪除所選項目嗎？",
   "prompt.confirm_exit": "不儲存離開嗎？",
   "prompt.input_required": "需要輸入資料",
   "prompt.try_again": "請重試",
-
   "format.date": "%Y-%m-%d",
   "format.datetime": "%Y-%m-%d %H:%M:%S",
   "format.file_size_bytes": "{size} B",
@@ -371,8 +355,16 @@
   "format.seconds": "{value}秒",
   "format.minutes": "{value}分",
   "format.hours": "{value}小時",
-
   "autofix.will_upgrade": "即將升級以下 {count} 個模組:",
   "autofix.mod_upgrade_info": "{mod}: {current} → {recommended} [{status}]",
-  "autofix.confirm_prompt": "確認自動修復？ (y/N):"
+  "autofix.confirm_prompt": "確認自動修復？ (y/N):",
+  "payment.coming_soon_title": "付費功能敬請期待",
+  "payment.coming_soon_subtitle": "付費訂閱功能正在開發中，即將上線！",
+  "payment.coming_soon_notice": "付費功能即將上線，敬請期待更多功能解鎖",
+  "payment.whats_included": "會員特權預告",
+  "payment.feature_unlimited": "無限使用所有功能",
+  "payment.feature_priority": "優先獲取新版本和新功能",
+  "payment.feature_exclusive": "專屬客服和技術支援",
+  "payment.feature_support": "支援專案持續開發",
+  "payment.btn_close": "我知道了"
 }

@@ -4,7 +4,6 @@
   "banner.version": "V1",
   "banner.features": "Λειτουργίες: Ανάλυση JAR · Αναζήτηση Mod · Ρύθμιση Περιβάλλοντος · Σάρωση Mixin · Επανασυσκευασία · Συγχρονισμός Αποθήκευσης · Μετάφραση · Επιδιόρθωση Σφαλμάτων · Αυτόματη Επιδιόρθωση · Αξιολόγηση Μετάβασης",
   "banner.tagline": "Έξυπνη προσαρμογή mods για το οικοσύστημα του Minecraft",
-
   "feature.f1.name": "F1 Ανάλυση Δομής JAR",
   "feature.f1.desc": "Αναλύει τη δομή του αρχείου JAR, εξάγει μεταδεδομένα mod και πληροφορίες κλάσεων",
   "feature.f2.name": "F2 Αναζήτηση και Λήψη Mod",
@@ -25,7 +24,6 @@
   "feature.f8_1.desc": "Επιδιορθώνει αυτόματα κοινά προβλήματα συμβατότητας mods",
   "feature.f9.name": "F9 Αξιολόγηση Εγκυρότητας Μετάβασης",
   "feature.f9.desc": "Αξιολογεί την εγκυρότητα της μετάβασης mods μεταξύ φορτωτών και εκδόσεων MC",
-
   "common.success": "Επιτυχία",
   "common.failed": "Αποτυχία",
   "common.error": "Σφάλμα",
@@ -65,7 +63,6 @@
   "common.deprecated": "Καταργημένο",
   "common.beta": "Βήτα",
   "common.experimental": "Πειραματικό",
-
   "error.missing_feature": "Σφάλμα: απαιτείται παράμετρος --feature ή --config",
   "error.module_not_found": "Η διαδρομή μονάδας {path} δεν υπάρχει",
   "error.feature_not_implemented": "[Ειδοποίηση] Η λειτουργία {feature} δεν έχει υλοποιηθεί ακόμα",
@@ -89,7 +86,6 @@
   "error.invalid_jar": "Σφάλμα: μη έγκυρη διαδρομή αρχείου JAR",
   "error.missing_mc_versions": "Σφάλμα: απαιτούνται οι εκδόσεις MC πηγής και προορισμού",
   "error.missing_loaders": "Σφάλμα: απαιτούνται οι φορτωτές πηγής και προορισμού",
-
   "not_implemented.title": "Λειτουργία δεν υλοποιήθηκε",
   "not_implemented.message": "Η λειτουργία {name} δεν έχει υλοποιηθεί ακόμα.",
   "not_implemented.module_path": "Διαδρομή μονάδας: {module}",
@@ -102,7 +98,6 @@
   "not_implemented.p6": "P6: F6 Συγχρονισμός Αποθήκευσης",
   "not_implemented.reference": "Ανατρέξτε στον Οδηγό Ανάπτυξης V1 για τεχνικές προδιαγραφές",
   "not_implemented.error_report": "Παρουσιάστηκε σφάλμα κατά την εκτέλεση της λειτουργίας",
-
   "auth.title": "Κατάσταση Άδειας",
   "auth.member_tier": "Επίπεδο Μέλους",
   "auth.auth_code": "Κωδικός Εξουσιοδότησης",
@@ -169,7 +164,6 @@
   "auth.activate_success": "Ενεργοποιήθηκε {tier} ({subscription}), λήγει {expires}",
   "auth.migration_assess_daily_free": "Δωρεάν περίοδος ({count}/ημέρα)",
   "auth.migration_assess_limit_reached": "Μόνο {count} αξιολογήσεις μετάβασης ανά ημέρα στη δωρεάν περίοδο",
-
   "payment.title": "Αναβάθμιση σε Κανονικό Μέλος",
   "payment.header_title": "MC Μηχανικός Προσαρμογής Οικοσυστήματος",
   "payment.header_subtitle": "Αναβαθμίστε για να ξεκλειδώσετε περισσότερες χρήσεις και προχωρημένες λειτουργίες",
@@ -221,7 +215,6 @@
   "payment.page_path": "Διαδρομή σελίδας: {path}",
   "payment.browser_not_opened": "Ο browser μπορεί να μην άνοιξε αυτόματα. Επισκεφτείτε τη διαδρομή παραπάνω χειροκίνητα.",
   "payment.open_failed": "Αδυναμία ανοίγματος σελίδας πληρωμών",
-
   "migration.step1": "[1/5] Ανάλυση μεταδεδομένων mod",
   "migration.step2": "[2/5] Ανάλυση συμβατότητας μετάβασης loader",
   "migration.step3": "[3/5] Ανάλυση συμβατότητας έκδοσης MC",
@@ -239,7 +232,6 @@
   "migration.version_compat": "Συμβατότητα Εκδόσεων MC",
   "migration.dependency_check": "Συμβατότητα Εξαρτήσεων",
   "migration.mixin_analysis": "Ανάλυση Εισαγωγής Mixin",
-
   "migration.assess_title": "F9 Αξιολόγηση Εγκυρότητας Μετάβασης",
   "migration.jar_info": "Mod: {path}",
   "migration.migration_info": "Μετάβαση: {from_mc} ({from_loader}) → {to_mc} ({to_loader})",
@@ -273,7 +265,6 @@
   "migration.mixin_count": "Σημεία Εισαγωγής Mixin: {count}",
   "migration.suggestions": "Προτάσεις Μετάβασης:",
   "migration.report_saved_path": "Η αναφορά αποθηκεύτηκε στο:",
-
   "help.feature": "Επιλέξτε λειτουργία για εκτέλεση (F1-F9)",
   "help.config": "Διαδρομή αρχείου ρυθμίσεων JSON (λειτουργία δέσμης)",
   "help.output": "Διαδρομή αρχείου εξόδου",
@@ -309,13 +300,11 @@
   "help.reset_free_period": "Επαναφορά δωρεάν περιόδου (για εντοπισμό σφαλμάτων)",
   "help.download": "Αυτόματη λήψη αρχείου JAR",
   "help.severity": "Επίπεδο λεπτομέρειας αναφοράς (summary/full)",
-
   "lang.set_success": "Γλώσσα ορίστηκε σε: {lang}",
   "lang.set_failed": "Μη υποστηριζόμενη γλώσσα: {lang}",
   "lang.available": "Διαθέσιμες γλώσσες:",
   "lang.current": "Τρέχουσα γλώσσα: {lang}",
   "lang.detected": "Γλώσσα που εντοπίστηκε από {source}: {lang}",
-
   "examples.title": "Παραδείγματα:",
   "examples.cmd": "  # Λειτουργία γραμμής εντολών",
   "examples.cmd_example": "  python main.py --feature jar_parser --jar-path \"D:\\mods\\create.jar\"",
@@ -324,7 +313,6 @@
   "examples.lang": "  # Αλλαγή γλώσσας",
   "examples.lang_example": "  python main.py --lang en_us",
   "examples.features_title": "Διαθέσιμες λειτουργίες:",
-
   "steps.preparing": "Προετοιμασία περιβάλλοντος...",
   "steps.loading": "Φόρτωση πόρων...",
   "steps.processing": "Επεξεργασία...",
@@ -337,26 +325,22 @@
   "steps.saving": "Αποθήκευση...",
   "steps.complete": "Ολοκληρώθηκε!",
   "steps.failed": "Αποτυχία!",
-
   "result.success": "Η λειτουργία ολοκληρώθηκε επιτυχώς",
   "result.failed": "Η λειτουργία απέτυχε: {reason}",
   "result.partial": "Ολοκληρώθηκε με προειδοποιήσεις: βρέθηκαν {count} προβλήματα",
   "result.report_saved": "Η αναφορά αποθηκεύτηκε στο: {path}",
   "result.output_saved": "Η έξοδος αποθηκεύτηκε στο: {path}",
-
   "warning.deprecated": "Αυτή η λειτουργία είναι καταργημένη",
   "warning.limited": "Η χρήση είναι περιορισμένη",
   "warning.beta": "Αυτή είναι μια λειτουργία beta",
   "warning.experimental": "Αυτή είναι μια πειραματική λειτουργία",
   "warning.config_recommended": "Συνιστάται η χρήση αρχείων διαμόρφωσης για λειτουργίες δέσμης",
-
   "prompt.confirm_continue": "Συνέχεια;",
   "prompt.confirm_overwrite": "Επικάλυψη υπαρκτών αρχείων;",
   "prompt.confirm_delete": "Διαγραφή επιλεγμένων αντικειμένων;",
   "prompt.confirm_exit": "Έξοδος χωρίς αποθήκευση;",
   "prompt.input_required": "Απαιτείται εισαγωγή",
   "prompt.try_again": "Παρακαλώ δοκιμάστε ξανά",
-
   "format.date": "%Y-%m-%d",
   "format.datetime": "%Y-%m-%d %H:%M:%S",
   "format.file_size_bytes": "{size} B",
@@ -369,8 +353,16 @@
   "format.seconds": "{value}δ",
   "format.minutes": "{value}λ",
   "format.hours": "{value}ώ",
-
   "autofix.will_upgrade": "Θα αναβαθμίσει τα ακόλουθα {count} mods:",
   "autofix.mod_upgrade_info": "{mod}: {current} → {recommended} [{status}]",
-  "autofix.confirm_prompt": "Επιβεβαίωση αυτόματης επιδιόρθωσης; (y/N):"
+  "autofix.confirm_prompt": "Επιβεβαίωση αυτόματης επιδιόρθωσης; (y/N):",
+  "payment.coming_soon_title": "Η πληρωμή έρχεται σύντομα",
+  "payment.coming_soon_subtitle": "Η λειτουργία συνδρομής πληρωμής είναι υπό ανάπτυξη. Σύντομα διαθέσιμη!",
+  "payment.coming_soon_notice": "Η λειτουργία πληρωμής έρχεται σύντομα. Περιμένετε περισσότερα ξεκλειδώματα λειτουργιών!",
+  "payment.whats_included": "Προεπισκόπηση παροχών μελών",
+  "payment.feature_unlimited": "Απεριόριστη πρόσβαση σε όλες τις λειτουργίες",
+  "payment.feature_priority": "Πρόωρη πρόσβαση σε νέες εκδόσεις και λειτουργίες",
+  "payment.feature_exclusive": "Προτεραιότητα υποστήριξης πελατών",
+  "payment.feature_support": "Υποστηρίξτε τη συνεχή ανάπτυξη",
+  "payment.btn_close": "Κατάλαβα"
 }

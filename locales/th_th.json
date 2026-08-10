@@ -4,7 +4,6 @@
   "banner.version": "V1",
   "banner.features": "ฟังก์ชัน: วิเคราะห์ JAR · ค้นหา Mod · ตั้งค่าสภาพแวดล้อม · สแกน Mixin · แพ็กใหม่ · ซิงค์บันทึก · แปลภาษา · แก้ไขข้อผิดพลาด · แก้ไขอัตโนมัติ · ประเมินการย้าย",
   "banner.tagline": "การปรับตัว Mod อัจฉริยะสำหรับระบบนิเวศ Minecraft",
-
   "feature.f1.name": "F1 วิเคราะห์โครงสร้าง JAR",
   "feature.f1.desc": "วิเคราะห์โครงสร้างไฟล์ JAR สกัดข้อมูลเมตาของ Mod และข้อมูลคลาส",
   "feature.f2.name": "F2 ค้นหาและดาวน์โหลด Mod",
@@ -25,7 +24,6 @@
   "feature.f8_1.desc": "แก้ไขปัญหาความเข้ากันได้ของ Mod ที่พบบ่อยโดยอัตโนมัติ",
   "feature.f9.name": "F9 ประเมินความเป็นไปได้การย้าย",
   "feature.f9.desc": "ประเมินความเป็นไปได้ในการย้าย Mod ระหว่างตัวโหลดและเวอร์ชัน MC",
-
   "common.success": "สำเร็จ",
   "common.failed": "ล้มเหลว",
   "common.error": "ข้อผิดพลาด",
@@ -66,7 +64,6 @@
   "common.deprecated": "เลิกใช้แล้ว",
   "common.beta": "เบต้า",
   "common.experimental": "ทดลอง",
-
   "error.missing_feature": "ข้อผิดพลาด: ต้องระบุพารามิเตอร์ --feature หรือ --config",
   "error.module_not_found": "เส้นทางโมดูล {path} ไม่มีอยู่",
   "error.feature_not_implemented": "[แจ้งเตือน] ฟังก์ชัน {feature} ยังไม่ได้นำไปใช้งาน",
@@ -90,7 +87,6 @@
   "error.invalid_jar": "ข้อผิดพลาด: เส้นทางไฟล์ JAR ไม่ถูกต้อง",
   "error.missing_mc_versions": "ข้อผิดพลาด: ต้องระบุเวอร์ชัน MC ต้นทางและปลายทาง",
   "error.missing_loaders": "ข้อผิดพลาด: ต้องระบุตัวโหลดต้นทางและปลายทาง",
-
   "not_implemented.title": "ฟังก์ชันยังไม่ได้นำไปใช้งาน",
   "not_implemented.message": "ฟังก์ชัน {name} ยังไม่ได้นำไปใช้งาน",
   "not_implemented.module_path": "เส้นทางโมดูล: {module}",
@@ -103,7 +99,6 @@
   "not_implemented.p6": "P6: F6 ซิงค์บันทึก",
   "not_implemented.reference": "โปรดอ้างอิงถึงคู่มือการพัฒนา V1 สำหรับข้อกำหนดทางเทคนิค",
   "not_implemented.error_report": "เกิดข้อผิดพลาดระหว่างการดำเนินฟังก์ชัน",
-
   "auth.title": "สถานะใบอนุญาต",
   "auth.member_tier": "ระดับสมาชิก",
   "auth.auth_code": "รหัสการอนุญาต",
@@ -171,7 +166,6 @@
   "auth.activate_success": "เปิดใช้งาน {tier} ({subscription}) แล้ว หมดอายุ {expires}",
   "auth.migration_assess_daily_free": "ช่วงฟรี ({count} ครั้ง/วัน)",
   "auth.migration_assess_limit_reached": "เหลือเพียง {count} ครั้งในการประเมินการย้ายต่อวันในช่วงฟรี",
-
   "payment.title": "อัปเกรดเป็นสมาชิก",
   "payment.header_title": "MC วิศวกรปรับตัวระบบนิเวศ",
   "payment.header_subtitle": "อัปเกรดเพื่อปลดล็อกการใช้งานมากขึ้นและฟังก์ชันขั้นสูง",
@@ -223,7 +217,6 @@
   "payment.page_path": "เส้นทางหน้า: {path}",
   "payment.browser_not_opened": "เบราว์เซอร์อาจไม่ได้เปิดอัตโนมัติ กรุณาเยี่ยมชมเส้นทางด้านบนด้วยตนเอง",
   "payment.open_failed": "ไม่สามารถเปิดหน้าการชำระเงินได้",
-
   "migration.step1": "[1/5] กำลังวิเคราะห์ข้อมูลเมตาของ mod",
   "migration.step2": "[2/5] กำลังวิเคราะห์ความเข้ากันได้ของการย้าย loader",
   "migration.step3": "[3/5] กำลังวิเคราะห์ความเข้ากันได้ของเวอร์ชัน MC",
@@ -241,7 +234,6 @@
   "migration.version_compat": "ความเข้ากันได้ของเวอร์ชัน MC",
   "migration.dependency_check": "ความเข้ากันได้ของการพึ่งพา",
   "migration.mixin_analysis": "การวิเคราะห์การฉีด Mixin",
-
   "migration.assess_title": "F9 ประเมินความเป็นไปได้การย้าย Mod",
   "migration.jar_info": "Mod: {path}",
   "migration.migration_info": "การย้าย: {from_mc} ({from_loader}) → {to_mc} ({to_loader})",
@@ -275,7 +267,6 @@
   "migration.mixin_count": "จุดฉีด Mixin: {count}",
   "migration.suggestions": "คำแนะนำในการย้าย:",
   "migration.report_saved_path": "รายงานถูกบันทึกที่:",
-
   "help.feature": "เลือกฟังก์ชันที่จะดำเนินการ (F1-F9)",
   "help.config": "เส้นทางไฟล์การตั้งค่า JSON (โหมดแบทช์)",
   "help.output": "เส้นทางไฟล์เอาต์พุต",
@@ -311,13 +302,11 @@
   "help.reset_free_period": "รีเซ็ตช่วงฟรี (สำหรับการดีบัก)",
   "help.download": "ดาวน์โหลดไฟล์ JAR อัตโนมัติ",
   "help.severity": "ระดับรายละเอียดรายงาน (summary/full)",
-
   "lang.set_success": "ภาษาถูกตั้งเป็น: {lang}",
   "lang.set_failed": "ภาษาที่ไม่รองรับ: {lang}",
   "lang.available": "ภาษาที่รองรับ:",
   "lang.current": "ภาษาปัจจุบัน: {lang}",
   "lang.detected": "ตรวจพบภาษาจาก {source}: {lang}",
-
   "examples.title": "ตัวอย่าง:",
   "examples.cmd": "  # โหมดบรรทัดคำสั่ง",
   "examples.cmd_example": "  python main.py --feature jar_parser --jar-path \"D:\\mods\\create.jar\"",
@@ -326,7 +315,6 @@
   "examples.lang": "  # เปลี่ยนภาษา",
   "examples.lang_example": "  python main.py --lang en_us",
   "examples.features_title": "ฟังก์ชันที่มี:",
-
   "steps.preparing": "กำลังเตรียมสภาพแวดล้อม...",
   "steps.loading": "กำลังโหลดทรัพยากร...",
   "steps.processing": "กำลังประมวลผล...",
@@ -339,26 +327,22 @@
   "steps.saving": "กำลังบันทึก...",
   "steps.complete": "เสร็จสิ้น!",
   "steps.failed": "ล้มเหลว!",
-
   "result.success": "การดำเนินงานสำเร็จ",
   "result.failed": "การดำเนินงานล้มเหลว: {reason}",
   "result.partial": "เสร็จสิ้นพร้อมคำเตือน: พบ {count} ปัญหา",
   "result.report_saved": "รายงานถูกบันทึกที่: {path}",
   "result.output_saved": "เอาต์พุตถูกบันทึกที่: {path}",
-
   "warning.deprecated": "ฟังก์ชันนี้ถูกเลิกใช้แล้ว",
   "warning.limited": "การใช้งานถูกจำกัด",
   "warning.beta": "นี่คือฟังก์ชันเบต้า",
   "warning.experimental": "นี่คือฟังก์ชันทดลอง",
   "warning.config_recommended": "แนะนำให้ใช้ไฟล์ config สำหรับการดำเนินงานแบบแบทช์",
-
   "prompt.confirm_continue": "ดำเนินการต่อ?",
   "prompt.confirm_overwrite": "เขียนทับไฟล์ที่มีอยู่?",
   "prompt.confirm_delete": "ลบรายการที่เลือก?",
   "prompt.confirm_exit": "ออกโดยไม่บันทึก?",
   "prompt.input_required": "จำเป็นต้องป้อนข้อมูล",
   "prompt.try_again": "กรุณาลองใหม่อีกครั้ง",
-
   "format.date": "%Y-%m-%d",
   "format.datetime": "%Y-%m-%d %H:%M:%S",
   "format.file_size_bytes": "{size} B",
@@ -371,8 +355,16 @@
   "format.seconds": "{value}วินาที",
   "format.minutes": "{value}นาที",
   "format.hours": "{value}ชั่วโมง",
-
   "autofix.will_upgrade": "จะอัปเกรด Mod ต่อไปนี้ {count} ตัว:",
   "autofix.mod_upgrade_info": "{mod}: {current} → {recommended} [{status}]",
-  "autofix.confirm_prompt": "ยืนยันการแก้ไขอัตโนมัติ? (y/N):"
+  "autofix.confirm_prompt": "ยืนยันการแก้ไขอัตโนมัติ? (y/N):",
+  "payment.coming_soon_title": "ชำระเงินเร็วๆ นี้",
+  "payment.coming_soon_subtitle": "ฟีเจอร์สมัครสมาชิกแบบชำระเงินอยู่ระหว่างพัฒนา เร็วๆ นี้!",
+  "payment.coming_soon_notice": "ฟีเจอร์ชำระเงินเร็วๆ นี้ รอการปลดล็อกฟีเจอร์มากขึ้น!",
+  "payment.whats_included": "ดูตัวอย่างสิทธิประโยชน์สมาชิก",
+  "payment.feature_unlimited": "เข้าถึงทุกฟีเจอร์แบบไม่จำกัด",
+  "payment.feature_priority": "เข้าถึงเวอร์ชันและฟีเจอร์ใหม่ก่อนใคร",
+  "payment.feature_exclusive": "การสนับสนุนลูกค้าแบบลำดับความสำคัญ",
+  "payment.feature_support": "สนับสนุนการพัฒนาอย่างต่อเนื่อง",
+  "payment.btn_close": "เข้าใจแล้ว"
 }

@@ -4,7 +4,6 @@
   "banner.version": "V1",
   "banner.features": "Funciones: Análisis JAR · Búsqueda Mods · Configuración Entorno · Escaneo Mixin · Reempaquetado · Sincronización Guardados · Traducción · Reparación Errores · Reparación Auto · Evaluación Migración",
   "banner.tagline": "Adaptación inteligente de mods para el ecosistema de Minecraft",
-
   "feature.f1.name": "F1 Análisis de Estructura JAR",
   "feature.f1.desc": "Analiza la estructura del archivo JAR, extrae metadatos del mod e información de clases",
   "feature.f2.name": "F2 Búsqueda y Descarga de Mods",
@@ -25,7 +24,6 @@
   "feature.f8_1.desc": "Repara automáticamente problemas comunes de compatibilidad de mods",
   "feature.f9.name": "F9 Evaluación de Viabilidad de Migración",
   "feature.f9.desc": "Evalúa la viabilidad de migrar mods entre cargadores y versiones de MC",
-
   "common.success": "Éxito",
   "common.failed": "Fallido",
   "common.error": "Error",
@@ -65,7 +63,6 @@
   "common.deprecated": "Obsoleto",
   "common.beta": "Beta",
   "common.experimental": "Experimental",
-
   "error.missing_feature": "Error: se requiere parámetro --feature o --config",
   "error.module_not_found": "La ruta del módulo {path} no existe",
   "error.feature_not_implemented": "[Aviso] Función {feature} aún no implementada",
@@ -89,7 +86,6 @@
   "error.invalid_jar": "Error: ruta de archivo JAR inválida",
   "error.missing_mc_versions": "Error: se requieren las versiones de MC de origen y destino",
   "error.missing_loaders": "Error: se requieren los cargadores de origen y destino",
-
   "not_implemented.title": "Función no implementada",
   "not_implemented.message": "La función {name} aún no está implementada.",
   "not_implemented.module_path": "Ruta del módulo: {module}",
@@ -102,7 +98,6 @@
   "not_implemented.p6": "P6: F6 Sincronización de Guardados",
   "not_implemented.reference": "Consulte la Guía de Desarrollo V1 para especificaciones técnicas",
   "not_implemented.error_report": "Se produjo un error durante la ejecución de la función",
-
   "auth.title": "Estado de Licencia",
   "auth.member_tier": "Nivel de Membresía",
   "auth.auth_code": "Código de Autorización",
@@ -169,7 +164,6 @@
   "auth.activate_success": "Activado {tier} ({subscription}), vence {expires}",
   "auth.migration_assess_daily_free": "Período gratuito ({count}/día)",
   "auth.migration_assess_limit_reached": "Solo {count} evaluaciones de migración por día en período gratuito",
-
   "payment.title": "Actualizar a Miembro Normal",
   "payment.header_title": "MC Ingeniero de Adaptación de Ecosistema",
   "payment.header_subtitle": "Actualice para desbloquear más usos y funciones avanzadas",
@@ -221,7 +215,6 @@
   "payment.page_path": "Ruta de página: {path}",
   "payment.browser_not_opened": "Es posible que el navegador no se haya abierto automáticamente. Visite la ruta anterior manualmente.",
   "payment.open_failed": "No se pudo abrir la página de pagos",
-
   "migration.step1": "[1/5] Analizando metadatos del mod",
   "migration.step2": "[2/5] Analizando compatibilidad de migración del cargador",
   "migration.step3": "[3/5] Analizando compatibilidad de versión MC",
@@ -239,7 +232,6 @@
   "migration.version_compat": "Compatibilidad de Versiones MC",
   "migration.dependency_check": "Compatibilidad de Dependencias",
   "migration.mixin_analysis": "Análisis de Inyección Mixin",
-
   "migration.assess_title": "F9 Evaluación de Viabilidad de Migración",
   "migration.jar_info": "Mod: {path}",
   "migration.migration_info": "Migración: {from_mc} ({from_loader}) → {to_mc} ({to_loader})",
@@ -273,7 +265,6 @@
   "migration.mixin_count": "Puntos de Inyección Mixin: {count}",
   "migration.suggestions": "Sugerencias de migración:",
   "migration.report_saved_path": "Reporte guardado en:",
-
   "help.feature": "Selecciona función a ejecutar (F1-F9)",
   "help.config": "Ruta del archivo de configuración JSON (modo por lotes)",
   "help.output": "Ruta del archivo de salida",
@@ -309,13 +300,11 @@
   "help.reset_free_period": "Reiniciar período gratuito (para depuración)",
   "help.download": "Descargar archivo JAR automáticamente",
   "help.severity": "Nivel de detalle del informe (summary/full)",
-
   "lang.set_success": "Idioma establecido en: {lang}",
   "lang.set_failed": "Idioma no soportado: {lang}",
   "lang.available": "Idiomas disponibles:",
   "lang.current": "Idioma actual: {lang}",
   "lang.detected": "Idioma detectado de {source}: {lang}",
-
   "examples.title": "Ejemplos:",
   "examples.cmd": "  # Modo línea de comandos",
   "examples.cmd_example": "  python main.py --feature jar_parser --jar-path \"D:\\mods\\create.jar\"",
@@ -324,7 +313,6 @@
   "examples.lang": "  # Cambiar idioma",
   "examples.lang_example": "  python main.py --lang en_us",
   "examples.features_title": "Funciones disponibles:",
-
   "steps.preparing": "Preparando entorno...",
   "steps.loading": "Cargando recursos...",
   "steps.processing": "Procesando...",
@@ -337,26 +325,22 @@
   "steps.saving": "Guardando...",
   "steps.complete": "¡Completado!",
   "steps.failed": "¡Fallido!",
-
   "result.success": "Operación completada exitosamente",
   "result.failed": "Operación fallida: {reason}",
   "result.partial": "Completado con advertencias: {count} problemas encontrados",
   "result.report_saved": "Reporte guardado en: {path}",
   "result.output_saved": "Salida guardada en: {path}",
-
   "warning.deprecated": "Esta función está obsoleta",
   "warning.limited": "El uso está limitado",
   "warning.beta": "Esta es una función beta",
   "warning.experimental": "Esta es una función experimental",
   "warning.config_recommended": "Se recomienda usar archivos de configuración para operaciones por lotes",
-
   "prompt.confirm_continue": "¿Continuar?",
   "prompt.confirm_overwrite": "¿Sobrescribir archivos existentes?",
   "prompt.confirm_delete": "¿Eliminar elementos seleccionados?",
   "prompt.confirm_exit": "¿Salir sin guardar?",
   "prompt.input_required": "Se requiere entrada",
   "prompt.try_again": "Por favor intente de nuevo",
-
   "format.date": "%Y-%m-%d",
   "format.datetime": "%Y-%m-%d %H:%M:%S",
   "format.file_size_bytes": "{size} B",
@@ -369,8 +353,16 @@
   "format.seconds": "{value}s",
   "format.minutes": "{value}m",
   "format.hours": "{value}h",
-
   "autofix.will_upgrade": "Se actualizarán los siguientes {count} mods:",
   "autofix.mod_upgrade_info": "{mod}: {current} → {recommended} [{status}]",
-  "autofix.confirm_prompt": "¿Confirmar reparación automática? (y/N):"
+  "autofix.confirm_prompt": "¿Confirmar reparación automática? (y/N):",
+  "payment.coming_soon_title": "Pago Próximamente",
+  "payment.coming_soon_subtitle": "La función de suscripción de pago está en desarrollo. ¡Próximamente disponible!",
+  "payment.coming_soon_notice": "La función de pago está próxima. ¡Espera más desbloqueos de funciones!",
+  "payment.whats_included": "Vista previa de beneficios para miembros",
+  "payment.feature_unlimited": "Acceso ilimitado a todas las funciones",
+  "payment.feature_priority": "Acceso anticipado a nuevas versiones y funciones",
+  "payment.feature_exclusive": "Atención al cliente prioritaria",
+  "payment.feature_support": "Apoya el desarrollo continuo",
+  "payment.btn_close": "Entendido"
 }

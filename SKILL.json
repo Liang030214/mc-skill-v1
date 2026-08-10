@@ -109,10 +109,10 @@
     "F11": {
       "name": "Payment Guide Page",
       "name_zh": "付费引导页面",
-      "description": "Generate HTML payment guide page with QR codes when usage limits are reached",
-      "permissions": ["browser_open"],
+      "description": "Generate HTML placeholder page showing 'Coming Soon' notice when usage limits are reached. No payment-related content (QR codes, pricing) included in V1.0.2.",
+      "permissions": [],
       "enabled": false,
-      "note": "Disabled (ENABLE_PAYMENT=False) in V1.0.1. No payment prompts shown."
+      "note": "Disabled in V1.0.2. Shows 'Coming Soon' placeholder. Payment feature under development."
     }
   },
   "permissions_declaration": {

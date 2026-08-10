@@ -4,7 +4,6 @@
   "banner.version": "V1",
   "banner.features": "기능: JAR 분석 · MOD 검색 · 환경 구축 · Mixin 스캔 · 리소스 패키징 · 세이브 동기화 · 현지화 · 오류 수리 · 자동 수리 · 이식 평가",
   "banner.tagline": "스마트 MOD 적응을 위한 Minecraft 생태계",
-
   "feature.f1.name": "F1 JAR 구조 분석",
   "feature.f1.desc": "JAR 파일 구조를 분석하고 MOD 메타데이터와 클래스 정보를 추출합니다",
   "feature.f2.name": "F2 MOD 검색 및 다운로드",
@@ -25,7 +24,6 @@
   "feature.f8_1.desc": "일반적인 MOD 호환성 문제를 자동으로 수리합니다",
   "feature.f9.name": "F9 MOD 이식 가능성 평가",
   "feature.f9.desc": "로더 간 및 MC 버전 간 MOD 이식 가능성을 평가합니다",
-
   "common.success": "성공",
   "common.failed": "실패",
   "common.error": "오류",
@@ -65,7 +63,6 @@
   "common.deprecated": "더 이상 사용되지 않음",
   "common.beta": "베타",
   "common.experimental": "실험적",
-
   "error.missing_feature": "오류: --feature 또는 --config 매개변수가 필요합니다",
   "error.module_not_found": "모듈 경로 {path} 이(가) 존재하지 않습니다",
   "error.feature_not_implemented": "[알림] 기능 {feature} 은(는) 아직 구현되지 않았습니다",
@@ -89,7 +86,6 @@
   "error.invalid_jar": "오류: 유효하지 않은 JAR 파일 경로",
   "error.missing_mc_versions": "오류: 원본 및 대상 MC 버전이 필요합니다",
   "error.missing_loaders": "오류: 원본 및 대상 로더가 필요합니다",
-
   "not_implemented.title": "기능이 구현되지 않았습니다",
   "not_implemented.message": "기능 {name} 은(는) 아직 구현되지 않았습니다.",
   "not_implemented.module_path": "모듈 경로: {module}",
@@ -102,7 +98,6 @@
   "not_implemented.p6": "P6: F6 세이브 동기화",
   "not_implemented.reference": "기술 사양은 V1 개발 가이드를 참조하세요",
   "not_implemented.error_report": "기능 실행 중 오류가 발생했습니다",
-
   "auth.title": "라이선스 상태",
   "auth.member_tier": "회원 등급",
   "auth.auth_code": "라이선스 코드",
@@ -169,7 +164,6 @@
   "auth.activate_success": "{tier} ({subscription}) 활성화됨, 만료일: {expires}",
   "auth.migration_assess_daily_free": "무료 기간 ({count}회/일)",
   "auth.migration_assess_limit_reached": "무료 기간의 이식 평가는 하루 {count}회로 제한됩니다",
-
   "payment.title": "일반 회원으로 업그레이드",
   "payment.header_title": "MC 생태계 적응 엔지니어",
   "payment.header_subtitle": "업그레이드하여 더 많은 사용량과 고급 기능을 잠금 해제하세요",
@@ -221,7 +215,6 @@
   "payment.page_path": "페이지 경로: {path}",
   "payment.browser_not_opened": "브라우저가 자동으로 열리지 않았을 수 있습니다. 위 경로를 수동으로 방문해 주세요.",
   "payment.open_failed": "결제 페이지를 열 수 없습니다",
-
   "migration.step1": "[1/5] MOD 메타데이터 분석 중",
   "migration.step2": "[2/5] 로더 마이그레이션 호환성 분석 중",
   "migration.step3": "[3/5] MC 버전 호환성 분석 중",
@@ -239,7 +232,6 @@
   "migration.version_compat": "MC 버전 호환성",
   "migration.dependency_check": "의존성 호환성",
   "migration.mixin_analysis": "Mixin 주입 분석",
-
   "migration.assess_title": "F9 MOD 이식 가능성 평가",
   "migration.jar_info": "MOD: {path}",
   "migration.migration_info": "이식: {from_mc} ({from_loader}) → {to_mc} ({to_loader})",
@@ -273,7 +265,6 @@
   "migration.mixin_count": "Mixin 주입 포인트: {count}",
   "migration.suggestions": "이식 제안:",
   "migration.report_saved_path": "보고서 저장 위치:",
-
   "help.feature": "실행할 기능 선택 (F1-F9)",
   "help.config": "JSON 설정 파일 경로 (배치 모드)",
   "help.output": "출력 파일 경로",
@@ -309,13 +300,11 @@
   "help.reset_free_period": "무료 기간 초기화 (디버깅용)",
   "help.download": "JAR 파일 자동 다운로드",
   "help.severity": "보고서 세부 수준 (summary/full)",
-
   "lang.set_success": "언어가 설정되었습니다: {lang}",
   "lang.set_failed": "지원되지 않는 언어입니다: {lang}",
   "lang.available": "지원 언어:",
   "lang.current": "현재 언어: {lang}",
   "lang.detected": "{source}에서 언어 감지: {lang}",
-
   "examples.title": "예시:",
   "examples.cmd": "  # 명령줄 모드",
   "examples.cmd_example": "  python main.py --feature jar_parser --jar-path \"D:\\mods\\create.jar\"",
@@ -324,7 +313,6 @@
   "examples.lang": "  # 언어 전환",
   "examples.lang_example": "  python main.py --lang en_us",
   "examples.features_title": "사용 가능한 기능:",
-
   "steps.preparing": "환경 준비 중...",
   "steps.loading": "리소스 로딩 중...",
   "steps.processing": "처리 중...",
@@ -337,26 +325,22 @@
   "steps.saving": "저장 중...",
   "steps.complete": "완료!",
   "steps.failed": "실패!",
-
   "result.success": "작업이 성공적으로 완료되었습니다",
   "result.failed": "작업 실패: {reason}",
   "result.partial": "경고와 함께 완료: {count}개 문제 발견",
   "result.report_saved": "보고서가 저장되었습니다: {path}",
   "result.output_saved": "출력이 저장되었습니다: {path}",
-
   "warning.deprecated": "이 기능은 더 이상 사용되지 않습니다",
   "warning.limited": "사용이 제한되었습니다",
   "warning.beta": "이것은 베타 기능입니다",
   "warning.experimental": "이것은 실험적 기능입니다",
   "warning.config_recommended": "일괄 작업에는 설정 파일 사용이 권장됩니다",
-
   "prompt.confirm_continue": "계속하시겠습니까?",
   "prompt.confirm_overwrite": "기존 파일을 덮어쓰시겠습니까?",
   "prompt.confirm_delete": "선택한 항목을 삭제하시겠습니까?",
   "prompt.confirm_exit": "저장하지 않고 종료하시겠습니까?",
   "prompt.input_required": "입력이 필요합니다",
   "prompt.try_again": "다시 시도해 주세요",
-
   "format.date": "%Y-%m-%d",
   "format.datetime": "%Y-%m-%d %H:%M:%S",
   "format.file_size_bytes": "{size} B",
@@ -369,8 +353,16 @@
   "format.seconds": "{value}초",
   "format.minutes": "{value}분",
   "format.hours": "{value}시간",
-
   "autofix.will_upgrade": "다음 {count}개의 MOD를 업그레이드합니다:",
   "autofix.mod_upgrade_info": "{mod}: {current} → {recommended} [{status}]",
-  "autofix.confirm_prompt": "자동 수리를 확인하시겠습니까? (y/N):"
+  "autofix.confirm_prompt": "자동 수리를 확인하시겠습니까? (y/N):",
+  "payment.coming_soon_title": "결제 기능 출시 예정",
+  "payment.coming_soon_subtitle": "결제 구독 기능이 개발 중입니다. 곧 출시됩니다!",
+  "payment.coming_soon_notice": "결제 기능이 곧 출시됩니다. 더 많은 기능 잠금 해제를 기대하세요",
+  "payment.whats_included": "회원 혜택 미리보기",
+  "payment.feature_unlimited": "모든 기능 무제한 사용",
+  "payment.feature_priority": "새 버전 및 기능 우선 액세스",
+  "payment.feature_exclusive": "우선 고객 지원",
+  "payment.feature_support": "지속적인 개발 지원",
+  "payment.btn_close": "알겠습니다"
 }

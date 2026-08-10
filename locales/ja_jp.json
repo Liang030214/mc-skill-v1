@@ -4,7 +4,6 @@
   "banner.version": "V1",
   "banner.features": "機能: JAR解析・MOD検索・環境構築・Mixinスキャン・リソースパッキング・セーブ同期・ローカライズ・エラー修復・自動修復・移植評価",
   "banner.tagline": "スマートMOD適応 Minecraftエコシステム",
-
   "feature.f1.name": "F1 JAR構造解析",
   "feature.f1.desc": "JARファイル構造を解析し、MODメタデータとクラス情報を抽出します",
   "feature.f2.name": "F2 MOD検索・ダウンロード",
@@ -25,7 +24,6 @@
   "feature.f8_1.desc": "一般的なMOD互換性問題を自動的に修正します",
   "feature.f9.name": "F9 MOD移植可能性評価",
   "feature.f9.desc": "ローダー間およびMCバージョン間のMOD移植可能性を評価します",
-
   "common.success": "成功",
   "common.failed": "失敗",
   "common.error": "エラー",
@@ -65,7 +63,6 @@
   "common.deprecated": "廃止予定",
   "common.beta": "ベータ",
   "common.experimental": "実験的",
-
   "error.missing_feature": "エラー: --feature または --config パラメータが必要です",
   "error.module_not_found": "モジュールパス {path} が存在しません",
   "error.feature_not_implemented": "[ヒント] 機能 {feature} はまだ実装されていません",
@@ -89,7 +86,6 @@
   "error.invalid_jar": "エラー: JARファイルパスが無効です",
   "error.missing_mc_versions": "エラー: ソースとターゲットのMCバージョンが必要です",
   "error.missing_loaders": "エラー: ソースとターゲットのローダーが必要です",
-
   "not_implemented.title": "機能がまだ実装されていません",
   "not_implemented.message": "機能 {name} はまだ実装されていません。",
   "not_implemented.module_path": "モジュールパス: {module}",
@@ -102,7 +98,6 @@
   "not_implemented.p6": "P6: F6 セーブ同期",
   "not_implemented.reference": "技術仕様についてはV1開発ガイドを参照してください",
   "not_implemented.error_report": "機能実行中にエラーが発生しました",
-
   "auth.title": "ライセンス状態",
   "auth.member_tier": "会員ランク",
   "auth.auth_code": "ライセンスコード",
@@ -169,7 +164,6 @@
   "auth.activate_success": "{tier}（{subscription}）をアクティベートしました。有効期限: {expires}",
   "auth.migration_assess_daily_free": "無料期間（{count}回/日）",
   "auth.migration_assess_limit_reached": "無料期間の移植評価は1日あたり{count}回までです",
-
   "payment.title": "通常会員にアップグレード",
   "payment.header_title": "MCエコシステム適応エンジニア",
   "payment.header_subtitle": "アップグレードしてより多くの回数と高度な機能をアンロック",
@@ -221,7 +215,6 @@
   "payment.page_path": "ページパス: {path}",
   "payment.browser_not_opened": "ブラウザが自動的に開かなかった可能性があります。上記のパスに手動でアクセスしてください。",
   "payment.open_failed": "支払いページを開けません",
-
   "migration.step1": "[1/5] MODメタデータを解析中",
   "migration.step2": "[2/5] ローダー移行互換性を分析中",
   "migration.step3": "[3/5] MCバージョン互換性を分析中",
@@ -239,7 +232,6 @@
   "migration.version_compat": "MCバージョン互換性",
   "migration.dependency_check": "依存関係の互換性",
   "migration.mixin_analysis": "Mixin注入分析",
-
   "migration.assess_title": "F9 MOD移植可能性評価",
   "migration.jar_info": "MOD: {path}",
   "migration.migration_info": "移植: {from_mc}（{from_loader}）→ {to_mc}（{to_loader}）",
@@ -273,7 +265,6 @@
   "migration.mixin_count": "Mixin注入ポイント: {count}",
   "migration.suggestions": "移植提案:",
   "migration.report_saved_path": "レポートの保存先:",
-
   "help.feature": "実行する機能を選択 (F1-F9)",
   "help.config": "JSON設定ファイルパス（バッチモード）",
   "help.output": "出力ファイルパス",
@@ -309,13 +300,11 @@
   "help.reset_free_period": "無料期間をリセット（デバッグ用）",
   "help.download": "JARファイルを自動ダウンロード",
   "help.severity": "レポートの詳細レベル (summary/full)",
-
   "lang.set_success": "言語を設定しました: {lang}",
   "lang.set_failed": "サポートされていない言語です: {lang}",
   "lang.available": "サポート対象言語:",
   "lang.current": "現在の言語: {lang}",
   "lang.detected": "{source}から言語を検出しました: {lang}",
-
   "examples.title": "例:",
   "examples.cmd": "  # コマンドラインモード",
   "examples.cmd_example": "  python main.py --feature jar_parser --jar-path \"D:\\mods\\create.jar\"",
@@ -324,7 +313,6 @@
   "examples.lang": "  # 言語を切替",
   "examples.lang_example": "  python main.py --lang en_us",
   "examples.features_title": "利用可能な機能:",
-
   "steps.preparing": "環境を準備中...",
   "steps.loading": "リソースを読み込み中...",
   "steps.processing": "処理中...",
@@ -337,26 +325,22 @@
   "steps.saving": "保存中...",
   "steps.complete": "完了！",
   "steps.failed": "失敗！",
-
   "result.success": "操作が正常に完了しました",
   "result.failed": "操作に失敗しました: {reason}",
   "result.partial": "警告付きで完了しました: {count}件の問題が見つかりました",
   "result.report_saved": "レポートを保存しました: {path}",
   "result.output_saved": "出力を保存しました: {path}",
-
   "warning.deprecated": "この機能は廃止予定です",
   "warning.limited": "使用が制限されています",
   "warning.beta": "これはベータ機能です",
   "warning.experimental": "これは実験的機能です",
   "warning.config_recommended": "一括操作には設定ファイルの使用を推奨します",
-
   "prompt.confirm_continue": "続行しますか？",
   "prompt.confirm_overwrite": "既存のファイルを上書きしますか？",
   "prompt.confirm_delete": "選択したアイテムを削除しますか？",
   "prompt.confirm_exit": "保存せずに終了しますか？",
   "prompt.input_required": "入力が必要です",
   "prompt.try_again": "もう一度お試しください",
-
   "format.date": "%Y-%m-%d",
   "format.datetime": "%Y-%m-%d %H:%M:%S",
   "format.file_size_bytes": "{size} B",
@@ -369,8 +353,16 @@
   "format.seconds": "{value}秒",
   "format.minutes": "{value}分",
   "format.hours": "{value}時間",
-
   "autofix.will_upgrade": "以下の{count}個のMODをアップグレードします:",
   "autofix.mod_upgrade_info": "{mod}: {current} → {recommended} [{status}]",
-  "autofix.confirm_prompt": "自動修復を確定しますか？ (y/N):"
+  "autofix.confirm_prompt": "自動修復を確定しますか？ (y/N):",
+  "payment.coming_soon_title": "決済機能は近日公開",
+  "payment.coming_soon_subtitle": "決済サブスクリプション機能は開発中です。もうすぐ公開！",
+  "payment.coming_soon_notice": "決済機能は近日公開。より多くの機能解放にご期待ください",
+  "payment.whats_included": "メンバー特典のプレビュー",
+  "payment.feature_unlimited": "全機能を無制限に利用",
+  "payment.feature_priority": "新バージョンと新機能への早期アクセス",
+  "payment.feature_exclusive": "優先カスタマーサポート",
+  "payment.feature_support": "継続開発を支援",
+  "payment.btn_close": "了解"
 }
