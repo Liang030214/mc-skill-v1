@@ -34,29 +34,11 @@ MC Ecosystem Adaptation Engineer is an AI-powered assistant tool for Minecraft m
 
 ## Pricing
 
-### Free Trial (First 60 Days)
+### Free Access
 
-All features are completely free and unlimited for the first 60 days from first use.
+All features are currently free during the beta period.
 
-### Free Tier (After 60 Days)
-
-| Feature Type | Daily Free Quota |
-|-------------|-----------------|
-| Full-auto features (F2/F3/F4/F6/F7/F8/F8.1) | 20/day |
-| Semi-auto features (F1/F5) | 8/day |
-| Migration assessment (F9) | 1/day |
-
-> Daily quotas reset automatically. Light users can enjoy core features without payment.
-
-### Premium Subscription
-
-| Plan | Price |
-|------|-------|
-| Monthly | ¥8.88/month |
-| Quarterly | ¥23.88/quarter |
-| Yearly | ¥88.88/year |
-
-Premium benefits: full-auto features 100/day, semi-auto features 50/day, migration assessment 5/day.
+Premium subscription options will be available in the future. Stay tuned for updates.
 
 ## Installation
 
@@ -110,7 +92,7 @@ python main.py --feature save_sync --action sync --save-dir "~/.minecraft/saves"
 ## Author
 
 - **Author**: Liang030214
-- **Version**: v1.0.0
+- **Version**: v1.0.2
 - **License**: MIT License
 - **Homepage**: https://github.com/Liang030214/mc-skill-v1
 - **Tags**: minecraft, mod, forge, fabric, neoforge, quilt, mixin, translation, crash-fix, migration, i18n

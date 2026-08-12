@@ -2,9 +2,9 @@
   "name": "MC Ecosystem Adaptation Engineer",
   "name_zh": "MC全生态智能适配工程师",
   "slug": "mc-ecosystem-adapt-engineer",
-  "version": "1.0.1",
-  "description": "One-stop Minecraft mod ecosystem intelligent management tool with 12 features including mod search, environment setup, Mixin conflict scanning, crash fix, translation, migration assessment, save sync, authorization management, and multi-language support (11 languages with auto-detection)",
-  "description_zh": "Minecraft 模组全生态智能适配工具，支持模组检索、环境搭建、Mixin冲突扫描、崩溃修复、汉化、移植评估、存档同步、授权管理等12大功能，支持11种语言自动切换",
+  "version": "1.0.2",
+  "description": "One-stop Minecraft mod ecosystem intelligent management tool with 12 features including mod search, environment setup, Mixin conflict scanning, crash fix, translation, migration assessment, save sync, authorization management, and multi-language support (11 languages with auto-detection). V1.0.2: Enhanced API caching, offline mode, report rendering performance, and security compliance.",
+  "description_zh": "Minecraft 模组全生态智能适配工具，支持模组检索、环境搭建、Mixin冲突扫描、崩溃修复、汉化、移植评估、存档同步、授权管理等12大功能，支持11种语言自动切换。V1.0.2：增强API缓存、离线模式、报告渲染性能和安全合规性。",
   "author": "Liang030214",
   "homepage": "https://github.com/Liang030214/mc-skill-v1",
   "icon": "assets/icon-market.jpg",
@@ -30,7 +30,8 @@
     "multilingual",
     "save-sync",
     "authorization",
-    "payment-guide"
+    "offline-mode",
+    "api-cache"
   ],
   "features": {
     "F1": {

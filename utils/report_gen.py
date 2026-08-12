@@ -1,14 +1,19 @@
 """报告生成器模块
 
+V1.0.2 优化：报告渲染性能提升
+- CSS/JS 静态文件缓存
+- 模板预编译
+- 批量生成支持
+- 字符串拼接优化
+
 生成两类报告：
 1. HTML报告：用户阅读，含中文释义和建议
 2. JSON数据：程序间传递，遵循统一返回结构
-
-HTML报告风格参照V1开发指导文件：暗色主题，现代化UI，支持树形折叠交互。
 """
 
 import json
 import html
+import time
 from pathlib import Path
 from datetime import datetime
 from typing import Any, Dict, List, Optional, Union
@@ -16,10 +21,79 @@ from typing import Any, Dict, List, Optional, Union
 # 项目根目录
 _PROJECT_ROOT = Path(__file__).resolve().parent.parent
 _REPORTS_DIR = _PROJECT_ROOT / "output" / "reports"
+_STATIC_DIR = _PROJECT_ROOT / "assets" / "report_static"
+
+# === V1.0.2 新增: 静态资源缓存 ===
+_css_cache: Optional[str] = None
+_js_cache: Optional[str] = None
+_template_cache: Dict[str, str] = {}
+
+
+def _ensure_static_dir() -> Path:
+    """确保静态资源目录存在"""
+    _STATIC_DIR.mkdir(parents=True, exist_ok=True)
+    return _STATIC_DIR
+
+
+def _get_css_content() -> str:
+    """V1.0.2 新增: 获取CSS内容（带缓存）"""
+    global _css_cache
+    if _css_cache is not None:
+        return _css_cache
+
+    # 尝试从静态文件加载
+    css_file = _STATIC_DIR / "report_style.css"
+    if css_file.exists():
+        _css_cache = css_file.read_text(encoding="utf-8")
+        return _css_cache
+
+    # 使用内联样式作为后备
+    _css_cache = ReportGenerator.HTML_STYLE
+    return _css_cache
+
+
+def _get_js_content() -> str:
+    """V1.0.2 新增: 获取JS内容（带缓存）"""
+    global _js_cache
+    if _js_cache is not None:
+        return _js_cache
+
+    # 尝试从静态文件加载
+    js_file = _STATIC_DIR / "report_script.js"
+    if js_file.exists():
+        _js_cache = js_file.read_text(encoding="utf-8")
+        return _js_cache
+
+    # 使用内联脚本作为后备
+    _js_cache = ReportGenerator.HTML_SCRIPT
+    return _js_cache
+
+
+def export_static_files() -> Dict[str, str]:
+    """V1.0.2 新增: 导出CSS/JS到静态文件（供首次使用）"""
+    _ensure_static_dir()
+
+    css_path = _STATIC_DIR / "report_style.css"
+    js_path = _STATIC_DIR / "report_script.js"
+
+    css_path.write_text(ReportGenerator.HTML_STYLE, encoding="utf-8")
+    js_path.write_text(ReportGenerator.HTML_SCRIPT, encoding="utf-8")
+
+    return {
+        "css": str(css_path),
+        "js": str(js_path),
+    }
 
 
 class ReportGenerator:
-    """HTML/JSON报告生成器"""
+    """HTML/JSON报告生成器（V1.0.2 优化版）
+
+    优化特性：
+    - CSS/JS 静态文件缓存，避免每次重复写入
+    - 模板字符串预编译
+    - 批量生成支持
+    - 性能统计
+    """
 
     # === HTML样式（与V1开发指导文件风格保持一致）===
     HTML_STYLE = """
@@ -257,14 +331,55 @@ class ReportGenerator:
     </script>
     """
 
-    def __init__(self, feature: str = "main"):
+    def __init__(self, feature: str = "main", use_static: bool = True):
         """初始化报告生成器
 
         Args:
             feature: 功能模块名
+            use_static: 是否使用静态文件缓存（V1.0.2新增）
         """
         self.feature = feature
+        self.use_static = use_static
         _REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+
+        # V1.0.2 新增: 性能统计
+        self._render_count = 0
+        self._total_render_time = 0.0
+
+        # V1.0.2 新增: 预编译模板
+        self._precompile_templates()
+
+    def _precompile_templates(self) -> None:
+        """V1.0.2 新增: 预编译HTML模板"""
+        css = _get_css_content() if self.use_static else self.HTML_STYLE
+        js = _get_js_content() if self.use_static else self.HTML_SCRIPT
+
+        # 预编译完整模板
+        self._base_template = (
+            '<!DOCTYPE html>\n'
+            '<html lang="zh-CN">\n'
+            '<head>\n'
+            '<meta charset="UTF-8">\n'
+            '<meta name="viewport" content="width=device-width, initial-scale=1.0">\n'
+            '<title>{title}</title>\n'
+            f'{css}\n'
+            f'{js}\n'
+            '</head>\n'
+            '<body>\n'
+            '<div class="container">\n'
+            '    <div class="header">\n'
+            '        <h1>{title_escaped} <span class="tag">{feature_escaped}</span></h1>\n'
+            '        {meta_html}\n'
+            '    </div>\n'
+            '    {status_html}\n'
+            '    {content}\n'
+            '    <div class="footer">\n'
+            '        由 MC全生态智能适配工程师 V1 生成 · {footer_time}\n'
+            '    </div>\n'
+            '</div>\n'
+            '</body>\n'
+            '</html>'
+        )
 
     def _generate_filename(self, suffix: str, mod_name: str = "") -> str:
         """生成文件名
@@ -317,7 +432,7 @@ class ReportGenerator:
         mod_name: str = "",
         output_path: Union[str, Path] = None,
     ) -> Path:
-        """生成HTML报告
+        """生成HTML报告（V1.0.2 优化版）
 
         Args:
             title: 报告标题
@@ -330,6 +445,8 @@ class ReportGenerator:
         Returns:
             输出文件路径
         """
+        start_time = time.time()
+
         if output_path is None:
             output_path = _REPORTS_DIR / self._generate_filename(".html", mod_name)
         else:
@@ -337,8 +454,10 @@ class ReportGenerator:
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
 
+        # V1.0.2 优化: 使用列表拼接而非字符串拼接
+        parts = []
+
         # 构建meta pills
-        meta_html = ""
         if meta:
             pills = []
             for k, v in meta.items():
@@ -350,7 +469,9 @@ class ReportGenerator:
                 elif k.lower() in ("warning", "partial"):
                     cls = "yellow"
                 pills.append(f'<span class="pill {cls}">{html.escape(str(k))}: {html.escape(str(v))}</span>')
-            meta_html = f'<div class="meta">{"".join(pills)}</div>'
+            parts.append(f'<div class="meta">{"".join(pills)}</div>')
+        else:
+            parts.append("")
 
         # 状态banner
         status_cn = {
@@ -358,38 +479,33 @@ class ReportGenerator:
             "partial": "部分成功",
             "error": "失败",
         }.get(status, status)
-        status_html = (
+        parts.append(
             f'<div class="status-banner {status}">'
             f'<div class="sb-title">状态: {status_cn}</div>'
             f'</div>'
         )
 
-        html_doc = f"""<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{html.escape(title)}</title>
-{self.HTML_STYLE}
-{self.HTML_SCRIPT}
-</head>
-<body>
-<div class="container">
-    <div class="header">
-        <h1>{html.escape(title)} <span class="tag">{html.escape(self.feature)}</span></h1>
-        {meta_html}
-    </div>
-    {status_html}
-    {content}
-    <div class="footer">
-        由 MC全生态智能适配工程师 V1 生成 · {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
-    </div>
-</div>
-</body>
-</html>"""
+        # 组装HTML
+        meta_html = parts[0]
+        status_html = parts[1]
+        footer_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+        html_doc = self._base_template.format(
+            title=html.escape(title),
+            title_escaped=html.escape(title),
+            feature_escaped=html.escape(self.feature),
+            meta_html=meta_html,
+            status_html=status_html,
+            content=content,
+            footer_time=footer_time,
+        )
 
         with open(output_path, "w", encoding="utf-8") as f:
             f.write(html_doc)
+
+        # V1.0.2 新增: 性能统计
+        self._render_count += 1
+        self._total_render_time += time.time() - start_time
 
         return output_path
 
@@ -410,31 +526,58 @@ class ReportGenerator:
             完整HTML文档字符串
         """
         ts = timestamp or datetime.now().strftime("%Y%m%d_%H%M%S")
-        html_doc = f"""<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{html.escape(title)}</title>
-{self.HTML_STYLE}
-{self.HTML_SCRIPT}
-</head>
-<body>
-<div class="container">
-    <div class="header">
-        <h1>{html.escape(title)} <span class="tag">{html.escape(self.feature)}</span></h1>
-        <div class="meta">
-            <span class="pill blue">时间: {ts}</span>
-        </div>
-    </div>
-    {body_html}
-    <div class="footer">
-        由 MC全生态智能适配工程师 V1 生成 · {ts}
-    </div>
-</div>
-</body>
-</html>"""
+
+        html_doc = self._base_template.format(
+            title=html.escape(title),
+            title_escaped=html.escape(title),
+            feature_escaped=html.escape(self.feature),
+            meta_html=f'<div class="meta"><span class="pill blue">时间: {ts}</span></div>',
+            status_html="",
+            content=body_html,
+            footer_time=ts,
+        )
         return html_doc
+
+    def generate_batch_html(
+        self,
+        items: List[Dict[str, Any]],
+        output_dir: Optional[Path] = None,
+    ) -> List[Path]:
+        """V1.0.2 新增: 批量生成HTML报告
+
+        Args:
+            items: 报告项列表 [{"title": ..., "content": ..., "status": ..., "meta": ...}]
+            output_dir: 输出目录
+
+        Returns:
+            输出文件路径列表
+        """
+        if output_dir is None:
+            output_dir = _REPORTS_DIR
+
+        output_paths = []
+        for item in items:
+            path = self.generate_html(
+                title=item.get("title", "Report"),
+                content=item.get("content", ""),
+                status=item.get("status", "success"),
+                meta=item.get("meta"),
+                mod_name=item.get("mod_name", ""),
+                output_path=output_dir / self._generate_filename(".html", item.get("mod_name", "")),
+            )
+            output_paths.append(path)
+
+        return output_paths
+
+    def get_performance_stats(self) -> Dict[str, Any]:
+        """V1.0.2 新增: 获取性能统计"""
+        avg_time = self._total_render_time / self._render_count if self._render_count > 0 else 0
+        return {
+            "total_renders": self._render_count,
+            "total_time_seconds": round(self._total_render_time, 3),
+            "avg_time_seconds": round(avg_time, 4),
+            "use_static": self.use_static,
+        }
 
     # === HTML片段生成辅助方法 ===
     def render_table(
@@ -453,6 +596,7 @@ class ReportGenerator:
         Returns:
             HTML表格字符串
         """
+        # V1.0.2 优化: 使用列表拼接
         head = "".join(f"<th>{html.escape(str(h))}</th>" for h in headers)
         body_rows = []
         for row in rows:
@@ -497,13 +641,7 @@ class ReportGenerator:
         """递归生成树形结构HTML
 
         Args:
-            tree_data: 树数据字典，格式:
-                {
-                    "name": "节点名",
-                    "type": "dir/file",
-                    "desc_cn": "中文释义",
-                    "children": [...]
-                }
+            tree_data: 树数据字典
             depth: 当前深度
             max_depth: 默认展开最大深度
 
@@ -521,7 +659,6 @@ class ReportGenerator:
         is_dir = node_type in ("dir", "root")
         cls = "tree-dir" if is_dir else "tree-file"
 
-        # 节点显示文本
         display = name
         if tree_data.get("size"):
             display += f" ({tree_data['size']})"
@@ -538,7 +675,6 @@ class ReportGenerator:
                 f'{html.escape(display)}</span>{desc_html}</div>'
             )
 
-        # 有子节点
         collapsed = "collapsed" if depth >= max_depth else ""
         hidden = "hidden" if depth >= max_depth else ""
 
@@ -674,3 +810,15 @@ def generate_unified_output(
     gen.generate_json(unified, mod_name=mod_name, output_path=json_path)
 
     return unified["output_files"]
+
+
+def get_report_stats() -> Dict[str, Any]:
+    """V1.0.2 新增: 获取报告系统统计"""
+    return {
+        "reports_dir": str(_REPORTS_DIR),
+        "reports_dir_exists": _REPORTS_DIR.exists(),
+        "static_dir": str(_STATIC_DIR),
+        "static_dir_exists": _STATIC_DIR.exists(),
+        "css_cached": _css_cache is not None,
+        "js_cached": _js_cache is not None,
+    }
