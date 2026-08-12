@@ -32,15 +32,46 @@ temp/
 *.log
 *.tmp
 
-# 验证/测试脚本
-verify_*.py
-_expand_db.py
-_exe_entry.py
+# 构建脚本（开发用，不上传）
+build.py
+build_*.py
+build_*.bat
+_build_*.py
+_build_*.bat
+_assemble*.py
+_assemble*.bat
+_create_*.py
+_git_push*.bat
+_*.py
+_*.bat
+*.bat.local
 
-# 发布包临时目录
+# 测试相关
+tests/
+test_*.py
+test_*.bat
+run_test.bat
+test_guide.bat
+verify_*.py
+results*.json
+
+# 开发文档（不上传）
+docs/
+
+# 发布相关（开发用，不上传）
+release-packages/
+release/*.zip
+release/*.tar.gz
 release/github_package_*/
+release/github_release_v*.md
+release/social_media_kit.md
 
 # 用户数据（不上传）
 data/auth_state.json
 data/payment/*.png
 data/payment/*.jpg
+
+# 其他辅助文件
+PROJECT_SUMMARY_EN.txt
+_GITHUB_UPDATE_GUIDE.md
+social_media_kit.md
